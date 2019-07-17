@@ -1,0 +1,56 @@
+GLOBAL STYLES
+* {
+    box-sizing: border-box;
+    text-align: center;}
+
+  body, html {
+        height: 100%;
+        width: 100%;
+      }
+
+      .container {
+        position: relative;
+        font-family: Arial;
+        justify-content: space-evenly;
+      }
+  
+    #gif-images {
+      height: 150px;
+      width: 150px;
+
+    }
+
+
+   /* Media Responsive Settings  */
+
+@media only screen and (max-width: 980px) {
+    .aboutme {
+        width: 800px;
+    }
+    .navheader {
+        width: 800px;
+ }
+}
+
+@media only screen and (max-width: 768px) {
+    .aboutme {
+        width: 600px;
+    }
+    .navheader {
+        width: 600px;
+ }
+    
+}
+
+@media only screen and (max-width: 640px) {
+    .aboutme {
+        width: 500px;
+    }
+    .navheader {
+        width: 500px;
+ }
+ .header {
+     position: static;
+ }
+
+}  */
