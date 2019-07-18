@@ -1,28 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!--Link to Global Reset & Bootstrap4-->
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.2/css/bulma.css">
+
+
+
     <!--Link to CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
     <title>Document</title>
 </head>
 
 <body>
-    
 
-    <!-- JQuery Call-->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <!-- Javascript Script Call-->
-    <script src="./assets/javascript/shakes.js"></script>
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+    <div class="box">
+        <div class="container">
+            <h1 class="title">Shakespeare, yo</h1>
+            <figure class="image">
+                <img id="bannerImg" src=""></img>
+            </figure>
+        </div>
+    </div>
+
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">Artist: </label>
+        </div>
+        <div class="field-body">
+            <div class="field">
+                <div class="control">
+                    <input type="text" class="input is-rounded" id="artistName" placeholder="Enter Artist Name">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">Song: </label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <div class="control">
+                        <input type="text" class="input is-rounded" id="songName" placeholder="Enter Song Name">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!--<div class="form-group form-check">
+        </div>-->
+  
+        <div class="control">
+            <button type="submit" id="submit" class="btn btn-primary">Submit</button>
+            <button type="random" id="random" class="btn btn-primary">Random</button>
+        </div>
+
+
+
+        <div class="container" id="trending">
+            <h1 class="heading">Trending</h1>
+        </div>
+
+
+        <!-- JQuery Call-->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <!-- Javascript Script Call-->
+        <script src="./assets/javascript/shakes.js"></script>
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
 </body>
+
 </html>
