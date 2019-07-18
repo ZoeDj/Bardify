@@ -2,29 +2,7 @@
 // JQuery: Document Ready //
 $(document).ready(function () {
 
-    // API Calls to https://developer.musixmatch.com/documentation/api-methods
-    var userQuote = "Usher"
-    var apiKey = '542b3f7df8aa942f4d97258ed69c29fd'
-    var queryURL = "https://api.funtranslations.com/translate/shakespeare.json?text=" + encodeURIComponent(userQuote)
-
-    $.ajax({
-        url: queryURL,
-        data: {
-            
-        },
-        cache: false,
-        type: "POST",
-        success: function (response) {
-            console.log(response)
-            console.log(response.contents.translated)
-        },
-        error: function (xhr) {
-            console.log(xhr)
-        }
-    });
-
-
-
+ 
     // API Calls to https://apilist.fun/api/shakespeare-translation-api
     var userQuote = "You never miss a good thing till it leaves ya.  Finally I realized that I need ya.  I want ya back.  Baby girl I need ya back."
     +"Gotta have ya back, babe.  Heartbroken when you left my world.  Man I wish I woulda kept my girl .  I love you.  I don't know what I'm gon do without my baby."
@@ -46,6 +24,27 @@ $(document).ready(function () {
         }
     });
 
+
+    //    // API Calls to https://developer.musixmatch.com/documentation/api-methods
+    //    var userQuote = "Usher"
+    //    var apiKey = '542b3f7df8aa942f4d97258ed69c29fd'
+    //    var queryURL = "https://api.funtranslations.com/translate/shakespeare.json?text=" + encodeURIComponent(userQuote)
+   
+    //    $.ajax({
+    //        url: queryURL,
+    //        data: {
+               
+    //        },
+    //        cache: false,
+    //        type: "POST",
+    //        success: function (response) {
+    //            console.log(response)
+    //            console.log(response.contents.translated)
+    //        },
+    //        error: function (xhr) {
+    //            console.log(xhr)
+    //        }
+    //    });
 
 
 
