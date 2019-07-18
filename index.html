@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,10 +12,37 @@
     <!--Link to CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
     <title>Document</title>
+    <!--Link to Global Reset & Bootstrap4-->
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!--Link to CSS-->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
 </head>
+
 
 <body>
     
+    <form>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Artist</label>
+            <input type="text" class="form-control" id="artistName" aria-describedby="emailHelp"
+                placeholder="Enter Artist Name">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Song</label>
+            <input type="text" class="form-control" id="songName" placeholder="Enter Song Name">
+        </div>
+        <div class="form-group form-check">
+            <button type="random" class="btn btn-primary">Random</button>
+        </div>
+        <button type="submit" id="submit" class="btn btn-primary">Submit</button>
+        <button type="random" id="random" class="btn btn-primary">Random</button>
+    </form>
+
+    <div class="container" id="trending">
+    <h1 class="heading">Trending</h1>
+    </div>
 
     <!-- JQuery Call-->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
@@ -25,4 +53,5 @@
     <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
 </body>
+
 </html>
