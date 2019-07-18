@@ -10,13 +10,11 @@ $(document).ready(function () {
 
     $.ajax({
         url: queryURL,
-        data: {
-
-        },
+        data: {},
         cache: false,
         type: "POST",
         success: function (response) {
-            console.log(response)
+            console.log(response, 'response from shakespeare API')
             console.log(response.contents.translated)
         },
         error: function (xhr) {
@@ -24,99 +22,53 @@ $(document).ready(function () {
         }
     });
 
+//  Storage of Artist and SongName to Firebase
+var firebaseConfig = {
+    apiKey: "AIzaSyCsMczUUrLbOzNHExrxUMXaJARFdkLldSk",
+    authDomain: "shakes-e2b51.firebaseapp.com",
+    databaseURL: "https://shakes-e2b51.firebaseio.com",
+    projectId: "shakes-e2b51",
+    storageBucket: "",
+    messagingSenderId: "793021669681",
+    appId: "1:793021669681:web:873f46e902cad6fc"
+};
 
-    //    // API Calls to https://developer.musixmatch.com/documentation/api-methods
-    //    var userQuote = "Usher"
-    //    var apiKey = '542b3f7df8aa942f4d97258ed69c29fd'
-    //    var queryURL = "https://api.funtranslations.com/translate/shakespeare.json?text=" + encodeURIComponent(userQuote)
-   
-    //    $.ajax({
-    //        url: queryURL,
-    //        data: {
-               
-    //        },
-    //        cache: false,
-    //        type: "POST",
-    //        success: function (response) {
-    //            console.log(response)
-    //            console.log(response.contents.translated)
-    //        },
-    //        error: function (xhr) {
-    //            console.log(xhr)
-    //        }
-    //    });
+  firebase.initializeApp(firebaseConfig);
+    var database = firebase.database();
+    var artist = '';
+    var song = '';
+    var likeCount = 0;
 
+  $("#submit").on("click", function(event) {
+    event.preventDefault();
+     artist = $("#artistName").val().trim();
+    song = $("#songName").val().trim();
+    likeCount = '#button#';
 
+    console.log(song, 'song sent to db');
+    console.log(artist,'artist sent to db');
+    console.log(likeCount, 'likeCount sent to db');
 
+    var musicCover = {
+        artist:artist,
+        song:song,
+        likeCount: likeCount
+    }
+    database.ref().push(musicCover);
 
+    refreshPage();
+});
 
+database.ref().on("child_added", function(childSnapshot) {
+    var returnArtist = childSnapshot.val().artist;
+    var returnSong = childSnapshot.val().song;
 
+    console.log(returnArtist, 'artist returned from db');
+    console.log(returnSong, 'song returned from db');
+});  
 
-
-
-
-
-
-
-
-
-
-
-/// PLAYGROUND MODE -  CODE BELOW IS FOR TEST FUNCTIONALITY  ///
-
-    //     function loadText(){
-    //         //Create XHR Obj
-    //         var xhr = new XMLHttpRequest();
-    //         //Open - type, url/file/src, ASYNC true/false
-    //         console.log(xhr);
-    //         xhr.open('GET','https://api.funtranslations.com/translate/', true)
-
-    //         // 200 is ok, 403 forbidden, 404 not found
-    //         xhr.onload = function(){
-    //             if(this.status == 200){
-    // console.log(this.responseText)
-    //             }
-    //         }
-    //         xhr.send('testing this string');
-    //     }
-
-    // "Notorious BIG": “Though she be but little, she is fierce!”
-    // "VarB": “The course of true love never did run smooth” ,
-    // "VarC": "Lord, what fools these mortals be!”
-
-
-    // function getShakes() {
-    //     fetch('https://api.funtranslations.com/translate/')
-    //         .then(function (response) {
-    //             console.log(response.json)
-    //             return response.json
-    //         })
-    // }
-
-    // getShakes();
-
-    // function getMusix() {
-    //     fetch('https://api.musixmatch.com/ws/1.1/')
-    //         .then(function (response) {
-    //             console.log(response.json)
-    //             return response.json;
-    //         })
-    //         .then(function(data){
-    //             console.log(data)
-    //         })
-    // }
-    // getMusix();
-
-
-
-    // // Create a request variable and assign a new XMLHttpRequest object to it.
-    // var request = new XMLHttpRequest()
-    // // Open a new connection, using the GET request on the URL endpoint
-    // request.open('GET', 'https://api.funtranslations.com/translate/', true)
-    // request.onload = function () {
-    //     // Begin accessing JSON data here
-    // }
-    // // Send request
-    // request.send()
+var refreshPage = function(){
+    location.reload()
+}
 
 });
