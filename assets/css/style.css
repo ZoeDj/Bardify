@@ -38,10 +38,6 @@
 
 }
 
-.input {
-    background-color: wheat;
-}
-
 a {
     color: wheat;
 }
@@ -50,10 +46,6 @@ a {
     width: 50%;
     margin-left: 25%;
 
-}
-
-div.container .has-text-centered {
-    margin-left: 25%;
 }
 
 .figure {
