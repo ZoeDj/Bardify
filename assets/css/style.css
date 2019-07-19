@@ -1,25 +1,3 @@
-GLOBAL STYLES
-* {
-    box-sizing: border-box;
-    text-align: center;}
-
-  body, html {
-        height: 100%;
-        width: 100%;
-      }
-
-      .container {
-        position: relative;
-        font-family: Arial;
-        justify-content: space-evenly;
-      }
-  
-    #gif-images {
-      height: 150px;
-      width: 150px;
-
-    }
-
 
    /* Media Responsive Settings  */
 
@@ -30,7 +8,7 @@ GLOBAL STYLES
     .navheader {
         width: 800px;
  }
-}
+};
 
 @media only screen and (max-width: 768px) {
     .aboutme {
@@ -40,7 +18,7 @@ GLOBAL STYLES
         width: 600px;
  }
     
-}
+};
 
 @media only screen and (max-width: 640px) {
     .aboutme {
@@ -53,4 +31,4 @@ GLOBAL STYLES
      position: static;
  }
 
-}  */
+};
