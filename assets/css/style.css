@@ -34,9 +34,24 @@
 };
 
 .hero {
-    background-color: blueviolet !important;
+   margin: 0 auto;
+
 }
 
 .input {
     background-color: gold;
+}
+
+#input {
+    width: 50%;
+    margin-left: 25%;
+
+}
+
+div.container .has-text-centered {
+    margin-left: 25%;
+}
+
+.figure {
+    margin: 0 auto;
 }
