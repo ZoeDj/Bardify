@@ -39,7 +39,11 @@
 }
 
 .input {
-    background-color: gold;
+    background-color: wheat;
+}
+
+a {
+    color: wheat;
 }
 
 #input {
@@ -54,4 +58,8 @@ div.container .has-text-centered {
 
 .figure {
     margin: 0 auto;
+}
+
+.hero {
+    background-color: maroon !important;
 }
