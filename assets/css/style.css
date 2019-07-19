@@ -32,3 +32,11 @@
  }
 
 };
+
+.hero {
+    background-color: blueviolet !important;
+}
+
+.input {
+    background-color: gold;
+}
