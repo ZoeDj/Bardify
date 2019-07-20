@@ -58,3 +58,9 @@
     background-color: wheat;
     color: darkred;
 }
+
+.footer {
+    background-color: maroon;
+    color: wheat;
+    padding-top: 60px;
+}
