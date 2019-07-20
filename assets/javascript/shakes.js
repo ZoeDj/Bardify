@@ -18,6 +18,7 @@ $(document).ready(function () {
     // Initial Values //
         var lyricOutput = "";
         var database = firebase.database();
+        // var trendingDatabase = firebase.database("/trending")
         var artist = '';
         var song = '';
         var likeCount = 0;
@@ -80,6 +81,7 @@ $(document).ready(function () {
         location.reload()
     });
 
+
     // Database Interface - Returns new logged instance and future likeCount increment
     database.ref().on("child_added", function (childSnapshot) {
         var returnArtist = childSnapshot.val().artist;
@@ -88,4 +90,43 @@ $(document).ready(function () {
         // console.log(returnArtist, 'artist returned from db');
         // console.log(returnSong, 'song returned from db');
     });
+
+//  ICEBOX LIKECOUNTER - using firebase transaction function  (https://firebase.google.com/docs/reference/js/firebase.database.Reference#transaction)
+    $("#random").on("click", function (event) {
+        event.preventDefault();
+    // Increment likeCount ref by 1.
+    var likeCountRef = firebase.database().ref('likeCounter');
+    likeCountRef.transaction(function(currentRank) {
+      // If likeCounthas never been set, currentRank will be `null`.
+      return currentRank + 1;
+      console.log(currentRank);
+    });
+        });
+
 });
+
+
+
+// // JavaScript  --   function   speak(String text, [String voice], [Object parameters])
+// <script src="https://code.responsivevoice.org/responsivevoice.js?key=YOUR_UNIQUE_KEY"></script>
+// 1
+// <script src="https://code.responsivevoice.org/responsivevoice.js?key=YOUR_UNIQUE_KEY"></script>
+
+// LikeCounter in RT database --  
+
+// function toggleStar(postRef, uid) {
+//     postRef.transaction(function(post) {
+//       if (post) {
+//         if (post.stars && post.stars[uid]) {
+//           post.starCount--;
+//           post.stars[uid] = null;
+//         } else {
+//           post.starCount++;
+//           if (!post.stars) {
+//             post.stars = {};
+//           }
+//           post.stars[uid] = true;
+//         }
+//       }
+//       return post;
+//     });
