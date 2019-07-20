@@ -1,4 +1,7 @@
-/* Media Responsive Settings  */
+
+
+   /* Media Responsive Settings  */
+
 
 @media only screen and (max-width: 980px) {
     .aboutme {
@@ -38,7 +41,8 @@
 }
 
 .input {
-    background-color: gold;
+    margin: 0 auto;
+
 }
 
 #input {
@@ -47,22 +51,21 @@
 
 }
 
-div.container .has-text-centered {
-    margin-left: 25%;
-}
-
 .figure {
     margin: 0 auto;
 }
-© 2019 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Help
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
+
+.hero {
+    background-color: maroon !important;
+}
+
+#lyricsHere {
+    background-color: wheat;
+    color: darkred;
+}
+
+.footer {
+    background-color: maroon;
+    color: wheat;
+    padding-top: 60px;
+}
