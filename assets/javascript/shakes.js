@@ -1,5 +1,4 @@
 // JQuery: Document Ready //
-// JQuery: Document Ready //
 $(document).ready(function () {
 
 
