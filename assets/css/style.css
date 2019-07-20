@@ -51,7 +51,6 @@
 }
 
 .hero {
-<<<<<<< HEAD
 
         background: linear-gradient(to bottom,#800000, #ff9933 100%);
 }
@@ -84,18 +83,4 @@
 
 #textInput {
     font-family: 'Cinzel Decorative';
-=======
-    background-color: maroon !important;
-}
-
-#lyricsHere {
-    background-color: wheat;
-    color: darkred;
-}
-
-.footer {
-    background-color: maroon;
-    color: wheat;
-    padding-top: 60px;
->>>>>>> c7d4518e21654c90a6c20e339a3cf1bafa41d185
 }
