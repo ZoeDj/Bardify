@@ -1,4 +1,5 @@
 // JQuery: Document Ready //
+// JQuery: Document Ready //
 $(document).ready(function () {
 
 
@@ -12,16 +13,15 @@ $(document).ready(function () {
         storageBucket: "",
         messagingSenderId: "793021669681",
         appId: "1:793021669681:web:873f46e902cad6fc"
-        };
+    };
     firebase.initializeApp(firebaseConfig);
 
     // Initial Values //
-        var lyricOutput = "";
-        var database = firebase.database();
-        // var trendingDatabase = firebase.database("/trending")
-        var artist = '';
-        var song = '';
-        var likeCount = 0;
+    var lyricOutput = "";
+    var database = firebase.database();
+    var artist = '';
+    var song = '';
+    var likeCount = 0;
 
     /// *** MAIN FUNCTION ***/// called by submit btn eventlistener, and contains a promise to address asyncronous return of API#1
     function lyricRequest(artist, song) {
@@ -36,10 +36,11 @@ $(document).ready(function () {
                 var test = data.mus[0].text;
                 var testTrim = test.trim();
                 lyricOutput = testTrim.replace(/[\r\n]*/g, "")  // removes returns and output breaks
+                console.log(lyricOutput)
             }).then(function () {
                 // Second API Call to translate music lyric into Shakespearean English -- Will not execute until first API completes
                 var userQuote = lyricOutput.substring(0, 1000);
-                var queryURL = "https://api.funtranslations.com/translate/shakespeare.json?text=" + encodeURIComponent(userQuote) 
+                var queryURL = "https://api.funtranslations.com/translate/shakespeare.json?text=" + encodeURIComponent(userQuote) + "&api_key=bCjn5kpx1Lialiqvaw_g7QeF"
                 $.ajax({
                     url: queryURL,
                     data: {},
@@ -58,12 +59,20 @@ $(document).ready(function () {
             });
     };
 
+    
+    lyricRequest("ladygaga", "shallow")  //  This callback fires main function lyricRequest() with two arguments
+    
+    console.log($("#songName").val().trim(), 'test1')
+    console.log($("#artistName").val().trim(), 'test2')
     //  User Interface -  event listeners,global execution callbacks
     $("#submit").on("click", function (event) {
         event.preventDefault();
-        song = $("#songName").val().trim();
-        artist = $("#artistName").val().trim();
+
+        song = 'Flawless'    // $("#songName").val().trim();
+        artist = 'Beyonce'    //  $("#artistName").val().trim();
         likeCount = 1;
+
+        console.log(song, name, 'test3')
         //Interaction with Remote Servers & HTML - callback to fire lyricRequest() main function
         console.log(artist, song, 'are key UI parameters for cb function ***')
         lyricRequest(artist, song)  //  This callback fires main function lyricRequest() with two arguments
@@ -81,7 +90,6 @@ $(document).ready(function () {
         location.reload()
     });
 
-
     // Database Interface - Returns new logged instance and future likeCount increment
     database.ref().on("child_added", function (childSnapshot) {
         var returnArtist = childSnapshot.val().artist;
@@ -90,43 +98,4 @@ $(document).ready(function () {
         // console.log(returnArtist, 'artist returned from db');
         // console.log(returnSong, 'song returned from db');
     });
-
-//  ICEBOX LIKECOUNTER - using firebase transaction function  (https://firebase.google.com/docs/reference/js/firebase.database.Reference#transaction)
-    $("#random").on("click", function (event) {
-        event.preventDefault();
-    // Increment likeCount ref by 1.
-    var likeCountRef = firebase.database().ref('likeCounter');
-    likeCountRef.transaction(function(currentRank) {
-      // If likeCounthas never been set, currentRank will be `null`.
-      return currentRank + 1;
-      console.log(currentRank);
-    });
-        });
-
 });
-
-
-
-// // JavaScript  --   function   speak(String text, [String voice], [Object parameters])
-// <script src="https://code.responsivevoice.org/responsivevoice.js?key=YOUR_UNIQUE_KEY"></script>
-// 1
-// <script src="https://code.responsivevoice.org/responsivevoice.js?key=YOUR_UNIQUE_KEY"></script>
-
-// LikeCounter in RT database --  
-
-// function toggleStar(postRef, uid) {
-//     postRef.transaction(function(post) {
-//       if (post) {
-//         if (post.stars && post.stars[uid]) {
-//           post.starCount--;
-//           post.stars[uid] = null;
-//         } else {
-//           post.starCount++;
-//           if (!post.stars) {
-//             post.stars = {};
-//           }
-//           post.stars[uid] = true;
-//         }
-//       }
-//       return post;
-//     });
