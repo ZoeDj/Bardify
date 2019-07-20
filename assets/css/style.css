@@ -35,17 +35,15 @@
 
 .hero {
    margin: 0 auto;
-
 }
 
-a {
-    color: wheat;
+.input {
+    margin: 0 auto;
 }
 
 #input {
     width: 50%;
     margin-left: 25%;
-
 }
 
 .figure {
@@ -54,4 +52,9 @@ a {
 
 .hero {
     background-color: maroon !important;
+}
+
+#lyricsHere {
+    background-color: wheat;
+    color: darkred;
 }
