@@ -6,43 +6,96 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!--Link to Global Reset & Bootstrap4-->
-    <link rel="stylesheet" type="text/css" href="assets/css/reset.css" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+
+
+
     <!--Link to CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
     <title>Document</title>
-    <!--Link to Global Reset & Bootstrap4-->
-    <link rel="stylesheet" type="text/css" href="assets/css/reset.css" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <!--Link to CSS-->
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
 </head>
 
-
 <body>
-    
-    <form>
-        <div class="form-group">
-            <label for="exampleInputEmail1">Artist</label>
-            <input type="text" class="form-control" id="artistName" aria-describedby="emailHelp"
-                placeholder="Enter Artist Name">
-        </div>
-        <div class="form-group">
-            <label for="exampleInputPassword1">Song</label>
-            <input type="text" class="form-control" id="songName" placeholder="Enter Song Name">
-        </div>
-        <div class="form-group form-check">
-            <button type="random" class="btn btn-primary">Random</button>
-        </div>
-        <button type="submit" id="submit" class="btn btn-primary">Submit</button>
-        <button type="random" id="random" class="btn btn-primary">Random</button>
-    </form>
+    <section class="hero is-dark is-fullheight has-text-centered">
+        <!-- Hero head: will stick at the top -->
+        <div class="hero-head">
 
-    <div class="container" id="trending">
-    <h1 class="heading">Trending</h1>
-    </div>
+            <!-- Hero content: will be in the middle -->
+            <div class="hero-body">
+                <div class="container has-text-centered">
+                    <img src="./assets/s-image-smol.png" alt="Logo">
+                </div>
+            </div>
+
+            <!-- Hero footer: will stick at the bottom -->
+            <div class="hero-foot">
+                <nav class="tabs is-boxed is-fullwidth">
+                    <div class="container has-text-centered">
+                        <div class="field">
+                            <div id="input" class="control">
+                                <input class="input is-rounded" type="text"
+                                    id="artistName" placeholder="Enter Artist Name">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div id="input" class="control">
+                                <input class="input is-rounded" type="text"
+                                    id="songName" placeholder="Enter Song Title">
+                            </div>
+                        </div>
+
+
+                        <ul>
+                            <li><a id="submit">Submit</a></li>
+
+                            <li><a id="random">Random Play</a></li>
+                        </ul>
+
+                    </div>
+                </nav>
+            </div>
+            <br>
+            <br>
+
+
+            <p>See What's Trending</p>
+            <div class="container has-text-centered">
+                <div class="columns">
+                    <div class="column is-1"></div>
+                    <div class="column is-2">
+                        <figure  class="figure image is-64x64">
+                            <img src="./assets/shakespeare.png" alt="Logo">
+                        </figure>
+                    </div>
+                    <div class="column is-2">
+                        <figure class="figure image is-64x64">
+                            <img src="./assets/shakespeare.png" alt="Logo">
+                        </figure>
+                    </div>
+                    <div class="column is-2">
+                        <figure class="figure image is-64x64">
+                            <img src="./assets/shakespeare.png" alt="Logo">
+                        </figure>
+                    </div>
+                    <div class="column is-2">
+                        <figure  class="figure image is-64x64">
+                            <img src="./assets/shakespeare.png" alt="Logo">
+                        </figure>
+                    </div>
+                    <div class="column is-2">
+                        <figure  class="figure image is-64x64">
+                            <img src="./assets/shakespeare.png" alt="Logo">
+                        </figure>
+                    </div>
+                    <div class="column is-1">
+
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+    </section>
+
 
     <!-- JQuery Call-->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
@@ -53,5 +106,6 @@
     <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
 </body>
+
 
 </html>

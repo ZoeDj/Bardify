@@ -1,27 +1,4 @@
-GLOBAL STYLES
-* {
-    box-sizing: border-box;
-    text-align: center;}
-
-  body, html {
-        height: 100%;
-        width: 100%;
-      }
-
-      .container {
-        position: relative;
-        font-family: Arial;
-        justify-content: space-evenly;
-      }
-  
-    #gif-images {
-      height: 150px;
-      width: 150px;
-
-    }
-
-
-   /* Media Responsive Settings  */
+/* Media Responsive Settings  */
 
 @media only screen and (max-width: 980px) {
     .aboutme {
@@ -30,7 +7,7 @@ GLOBAL STYLES
     .navheader {
         width: 800px;
  }
-}
+};
 
 @media only screen and (max-width: 768px) {
     .aboutme {
@@ -40,7 +17,7 @@ GLOBAL STYLES
         width: 600px;
  }
     
-}
+};
 
 @media only screen and (max-width: 640px) {
     .aboutme {
@@ -53,4 +30,39 @@ GLOBAL STYLES
      position: static;
  }
 
-}  */
+};
+
+.hero {
+   margin: 0 auto;
+
+}
+
+.input {
+    background-color: gold;
+}
+
+#input {
+    width: 50%;
+    margin-left: 25%;
+
+}
+
+div.container .has-text-centered {
+    margin-left: 25%;
+}
+
+.figure {
+    margin: 0 auto;
+}
+© 2019 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
