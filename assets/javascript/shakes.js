@@ -59,16 +59,14 @@ $(document).ready(function () {
     };
 
     
-    lyricRequest("ladygaga", "shallow")  //  This callback fires main function lyricRequest() with two arguments
     
-    console.log($("#songName").val().trim(), 'test1')
-    console.log($("#artistName").val().trim(), 'test2')
+   
     //  User Interface -  event listeners,global execution callbacks
     $("#submit").on("click", function (event) {
         event.preventDefault();
 
-        song = 'Flawless'    // $("#songName").val().trim();
-        artist = 'Beyonce'    //  $("#artistName").val().trim();
+        song = $("#songName").val().trim();
+        artist = $("#artistName").val().trim();
         likeCount = 1;
 
         console.log(song, name, 'test3')
@@ -86,7 +84,7 @@ $(document).ready(function () {
         database.ref().push(
             musicObject
         );
-        location.reload()
+        // location.reload() 
     });
 
     // Database Interface - Returns new logged instance and future likeCount increment
@@ -94,8 +92,6 @@ $(document).ready(function () {
         var returnArtist = childSnapshot.val().artist;
         var returnSong = childSnapshot.val().song;
 
-        // console.log(returnArtist, 'artist returned from db');
-        // console.log(returnSong, 'song returned from db');
     });
 });
 
