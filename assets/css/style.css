@@ -1,5 +1,7 @@
 
+
    /* Media Responsive Settings  */
+
 
 @media only screen and (max-width: 980px) {
     .aboutme {
@@ -35,15 +37,18 @@
 
 .hero {
    margin: 0 auto;
+
 }
 
 .input {
     margin: 0 auto;
+
 }
 
 #input {
     width: 50%;
     margin-left: 25%;
+
 }
 
 .figure {
