@@ -1,8 +1,6 @@
 // JQuery: Document Ready //
 $(document).ready(function () {
 
-
-
     //Database Set Up - ICEBOX FEATURE  //  Storage of Artist and SongName to Firebase  //
     var firebaseConfig = {
         apiKey: "AIzaSyCsMczUUrLbOzNHExrxUMXaJARFdkLldSk",
@@ -57,21 +55,17 @@ $(document).ready(function () {
                 });
             });
     };
-
     
-    lyricRequest("ladygaga", "shallow")  //  This callback fires main function lyricRequest() with two arguments
-    
-    console.log($("#songName").val().trim(), 'test1')
-    console.log($("#artistName").val().trim(), 'test2')
     //  User Interface -  event listeners,global execution callbacks
     $("#submit").on("click", function (event) {
         event.preventDefault();
 
-        song = 'Flawless'    // $("#songName").val().trim();
-        artist = 'Beyonce'    //  $("#artistName").val().trim();
+        console.log('code is running here')
+        console.log($("#songName").val().trim(), 'test3')
+        console.log($("#artistName").val().trim(), 'test4')
+        var song = $("#songName").val().trim();
+        var artist = $("#artistName").val().trim();
         likeCount = 1;
-
-        console.log(song, name, 'test3')
         //Interaction with Remote Servers & HTML - callback to fire lyricRequest() main function
         console.log(artist, song, 'are key UI parameters for cb function ***')
         lyricRequest(artist, song)  //  This callback fires main function lyricRequest() with two arguments
@@ -86,16 +80,12 @@ $(document).ready(function () {
         database.ref().push(
             musicObject
         );
-        location.reload()
     });
 
     // Database Interface - Returns new logged instance and future likeCount increment
     database.ref().on("child_added", function (childSnapshot) {
         var returnArtist = childSnapshot.val().artist;
         var returnSong = childSnapshot.val().song;
-
-        // console.log(returnArtist, 'artist returned from db');
-        // console.log(returnSong, 'song returned from db');
     });
 });
 
