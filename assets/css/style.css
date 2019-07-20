@@ -35,24 +35,14 @@
 
 .hero {
    margin: 0 auto;
-
 }
 
 .input {
-    background-color: wheat;
-}
-
-a {
-    color: wheat;
+    margin: 0 auto;
 }
 
 #input {
     width: 50%;
-    margin-left: 25%;
-
-}
-
-div.container .has-text-centered {
     margin-left: 25%;
 }
 
@@ -62,4 +52,9 @@ div.container .has-text-centered {
 
 .hero {
     background-color: maroon !important;
+}
+
+#lyricsHere {
+    background-color: wheat;
+    color: darkred;
 }
