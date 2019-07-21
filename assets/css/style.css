@@ -104,3 +104,12 @@
 .button {
     color: maroon;
 }
+
+/* dynamically formed page for displaying songs */
+.translated-text {
+    padding: 5% 30%;
+    color: white;
+}
+.like-button {
+    margin: 5%;
+}
