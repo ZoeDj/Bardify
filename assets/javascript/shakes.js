@@ -35,7 +35,8 @@ $(document).ready(function () {
                 var test = data.mus[0].text;
                 var testTrim = test.trim();
                 lyricOutput = testTrim.replace(/[\r\n]*/g, "")  // removes returns and output breaks
-            }).then(function shakeTrans() {
+                console.log(lyricOutput)
+            }).then(function shakeTrans () {
                 // Second API Call to translate music lyric into Shakespearean English -- Will not execute until first API completes
                 var userQuote = lyricOutput.substring(0, 1000);
                 var queryURL = "https://api.funtranslations.com/translate/shakespeare.json?text=" + encodeURIComponent(userQuote) + "&api_key=bCjn5kpx1Lialiqvaw_g7QeF"
@@ -102,6 +103,7 @@ $(document).ready(function () {
             }
          // Database Listener - Returns new logged instance and future likeCount increment
         database.ref().on("child_added", function (childSnapshot) {
+
         var returnArtist = childSnapshot.val().artist;
         var returnSong = childSnapshot.val().song;
             });
