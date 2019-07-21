@@ -59,7 +59,30 @@ $(document).ready(function () {
                 });
             });
               };
-    
+
+        $("#random").on("click", function (event) {
+        event.preventDefault();
+        var randomArray= [
+            {artist: "Ariana Grande", song:"7 rings"}, 
+            {artist: "Beyonce", song: "Flawless"}, 
+            {artist: "Imagine Dragons", song: "Thunder"}, 
+            {artist: "U2", song: "One"}, 
+            {artist: "Lady Gaga", song: "Shallow"},
+            {artist: "21 Pilots", song: "Stressed Out"},
+            {artist: "Clash", song: "Should I stay or should I go"},
+            ]
+            randomLyric = Math.round(Math.random()*randomArray.length);
+        
+            for (var i = 0; i < randomArray.length; i++){
+            artist = randomArray[i].artist;
+            song = randomArray[i].song;
+            // console.log( artist + song);
+            // console.log(indexOf(randomArray[i].song));
+            if ((randomArray.indexOf(randomArray[i])) === randomLyric){
+                    lyricRequest(artist, song).then (shakeTrans());
+                }
+            }
+    });
    
     //  User Interface -  event listeners,global execution callbacks
     $("#submit").on("click", function (event) {
