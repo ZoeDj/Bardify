@@ -36,7 +36,9 @@ $(document).ready(function () {
                 var testTrim = test.trim();
                 lyricOutput = testTrim.replace(/[\r\n]*/g, "")  // removes returns and output breaks
                 // console.log(lyricOutput)
+              
             }).then(function shakeTrans() {
+
                 // Second API Call to translate music lyric into Shakespearean English -- Will not execute until first API completes
                 var userQuote = lyricOutput.substring(0, 1000);
                 var queryURL = "https://api.funtranslations.com/translate/shakespeare.json?text=" + encodeURIComponent(userQuote) + "&api_key=bCjn5kpx1Lialiqvaw_g7QeF"
@@ -60,8 +62,10 @@ $(document).ready(function () {
             });
               };
 
-        $("#random").on("click", function (event) {
+
+    $("#random").on("click", function (event) {
         event.preventDefault();
+      
         var randomArray= [
             {artist: "Ariana Grande", song:"7 rings"}, 
             {artist: "Beyonce", song: "Flawless"}, 
@@ -70,10 +74,11 @@ $(document).ready(function () {
             {artist: "Lady Gaga", song: "Shallow"},
             {artist: "21 Pilots", song: "Stressed Out"},
             {artist: "Clash", song: "Should I stay or should I go"},
-            ]
-            randomLyric = Math.round(Math.random()*randomArray.length);
+         ]
+         randomLyric = Math.round(Math.random()*randomArray.length);
         
-            for (var i = 0; i < randomArray.length; i++){
+         for (var i = 0; i < randomArray.length; i++){
+
             artist = randomArray[i].artist;
             song = randomArray[i].song;
             // console.log( artist + song);
