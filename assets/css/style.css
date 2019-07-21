@@ -45,10 +45,9 @@
 
 }
 
-#input {
+.input {
     width: 50%;
     margin-left: 25%;
-
 }
 
 .figure {
@@ -91,8 +90,17 @@
     font-family: 'Cinzel Decorative';
 }
 
-.footer {
-    background-color: maroon;
-    color: wheat;
-    padding-top: 60px;
+.hero-footer {
+   font-family: 'Cinzel Decorative';
+   color: maroon;
+   padding-top: 30px;
+   padding-bottom: 60px;
+}
+
+.link {
+    color: white;
+}
+
+.button {
+    color: maroon;
 }
