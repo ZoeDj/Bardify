@@ -12,15 +12,15 @@ $(document).ready(function () {
         storageBucket: "",
         messagingSenderId: "793021669681",
         appId: "1:793021669681:web:873f46e902cad6fc"
-    };
+        };
     firebase.initializeApp(firebaseConfig);
 
     // Initial Values //
-    var lyricOutput = "";
-    var database = firebase.database();
-    var artist = '';
-    var song = '';
-    var likeCount = 0;
+        var lyricOutput = "";
+        var database = firebase.database();
+        var artist = '';
+        var song = '';
+        var likeCount = 0;
 
     /// *** MAIN FUNCTION ***/// called by submit btn eventlistener, and contains a promise to address asyncronous return of API#1
     function lyricRequest(artist, song) {
@@ -58,6 +58,19 @@ $(document).ready(function () {
             });
     };
 
+    //  User Interface -  event listeners,global execution callbacks
+    $("#submit").on("click", function (event) {
+        event.preventDefault();
+        song = $("#songName").val().trim();
+        artist = $("#artistName").val().trim();
+        likeCount = 1;
+        //Interaction with Remote Servers & HTML - callback to fire lyricRequest() main function
+        console.log(artist, song, 'are key UI parameters for cb function ***')
+        lyricRequest(artist, song)  //  This callback fires main function lyricRequest() with two arguments
+        logDatabase()  // Interaction with Database
+        // location.reload()
+    });
+
     $("#random").on("click", function (event) {
         event.preventDefault();
         var randomArray= [
@@ -69,52 +82,30 @@ $(document).ready(function () {
             {artist: "21 Pilots", song: "Stressed Out"},
             {artist: "Clash", song: "Should I stay or should I go"},
          ]
-         randomLyric = Math.round(Math.random()*randomArray.length);
-        
-         for (var i = 0; i < randomArray.length; i++){
-            artist = randomArray[i].artist;
-            song = randomArray[i].song;
-            // console.log( artist + song);
-            // console.log(indexOf(randomArray[i].song));
-            if ((randomArray.indexOf(randomArray[i])) === randomLyric){
-                 lyricRequest(artist, song).then (shakeTrans());
-             }
-            }
-    });
-    
-    
-   
-    //  User Interface -  event listeners,global execution callbacks
-    $("#submit").on("click", function (event) {
-        event.preventDefault();
+         var randomNum = Math.floor(Math.random()*randomArray.length);
+         console.log(randomNum)
+         var randomArtist = randomArray[randomNum].artist;
+         var randomSong = randomArray[randomNum].song;
+         console.log(randomArtist, randomSong, 'are random UI parameters for cb function ***')
+         lyricRequest(randomArtist, randomSong)  //  This callback fires main function lyricRequest() with two arguments
+                 });
 
-        song = $("#songName").val().trim();
-        artist = $("#artistName").val().trim();
-        likeCount = 1;
-
-        console.log(song, name, 'test3')
-        //Interaction with Remote Servers & HTML - callback to fire lyricRequest() main function
-        console.log(artist, song, 'are key UI parameters for cb function ***')
-        lyricRequest(artist, song)  //  This callback fires main function lyricRequest() with two arguments
-        // Interaction with Database
-        var musicObject = {
+    // Database Functions & Listeners
+        function logDatabase(){
+         var musicObject = {
             artist: artist,
             song: song,
             likeCount: likeCount,
             timestamp: firebase.database.ServerValue.TIMESTAMP
         }
         // Code for the push to firebase database
-        database.ref().push(
-            musicObject
-        );
-        // location.reload() 
-    });
+        database.ref().push(musicObject);
+            }
+         // Database Listener - Returns new logged instance and future likeCount increment
+        database.ref().on("child_added", function (childSnapshot) {
 
-    // Database Interface - Returns new logged instance and future likeCount increment
-    database.ref().on("child_added", function (childSnapshot) {
         var returnArtist = childSnapshot.val().artist;
         var returnSong = childSnapshot.val().song;
+            });
 
-    });
 });
-
