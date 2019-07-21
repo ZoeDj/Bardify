@@ -49,9 +49,17 @@ $(document).ready(function () {
                         console.log(response, 'shakespeare translation object')  // logs API JSON object from API call#2
                         translated = response.contents.translated
                         // console.log(translated)    // logs translation to console //
-                        $("#one").remove()
+
+                        $("#one").hide();
                         $("#pTrend").prepend("<p class ='translated-text'>" + translated + "</p>");
-                        $(".translated-text").append("<button class='like-button' type='submit'>Like</button>");
+                        $(".translated-text").append("<br><button class='button is-rounded has-text-centered like-button' type='submit'>Like</button><br>");
+                        $(".translated-text").append("<button id='search' class='button is-rounded has-text-centered' type='submit'>Search</button>");
+                        
+                        $("#search").on("click", function (event) {
+                        event.preventDefault();
+                        $(".translated-text").hide();
+                        $("#one").show();
+                        });
                     },
                     error: function (xhr) {
                         console.log(xhr)
@@ -59,6 +67,8 @@ $(document).ready(function () {
                 });
             });
     };
+
+    
 
     //  User Interface -  event listeners,global execution callbacks
     $("#submit").on("click", function (event) {
