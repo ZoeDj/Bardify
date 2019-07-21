@@ -96,3 +96,10 @@
     color: wheat;
     padding-top: 60px;
 }
+.translated-text{
+    padding: 5% 30%;
+    color: white;
+}
+.like-button{
+    margin: 5%;
+}

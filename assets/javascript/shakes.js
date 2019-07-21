@@ -31,11 +31,11 @@ $(document).ready(function () {
             + "&mus=" + song
             + "&apikey==8dc59cc7fdedc734247c325ec2ac4b7f",
             function (data) {
-                console.log(data, 'lyric object');  // logs API JSON object from API call#1
+                // console.log(data, 'lyric object');  // logs API JSON object from API call#1
                 var test = data.mus[0].text;
                 var testTrim = test.trim();
                 lyricOutput = testTrim.replace(/[\r\n]*/g, "")  // removes returns and output breaks
-                console.log(lyricOutput)
+                // console.log(lyricOutput)
             }).then(function () {
                 // Second API Call to translate music lyric into Shakespearean English -- Will not execute until first API completes
                 var userQuote = lyricOutput.substring(0, 1000);
@@ -46,19 +46,19 @@ $(document).ready(function () {
                     cache: false,
                     type: "POST",
                     success: function (response) {
-                        console.log(response, 'shakespeare translation object')  // logs API JSON object from API call#2
+                        // console.log(response, 'shakespeare translation object')  // logs API JSON object from API call#2
                         translated = response.contents.translated
-                        console.log(translated)    // logs translation to console //
-                        $('#trending').append("<div class = 'lyric'>" + translated + "</div>");
-                    },
+                        // console.log(translated)    // logs translation to console //
+                        $("#one").remove()
+                        $("#pTrend").prepend("<p class ='translated-text'>"+ translated +"</p>");
+                        $(".translated-text").append("<button class='like-button' type='submit'>Like</button>");
+                         },
                     error: function (xhr) {
                         console.log(xhr)
-                    }
+                    }     
                 });
             });
-    };
-
-    
+              };
     
    
     //  User Interface -  event listeners,global execution callbacks
@@ -94,4 +94,6 @@ $(document).ready(function () {
 
     });
 });
+
+
 
