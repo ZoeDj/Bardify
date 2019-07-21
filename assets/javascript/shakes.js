@@ -92,6 +92,19 @@ $(document).ready(function () {
 
     // Database Functions & Listeners
     function logDatabase() {
+       
+    //    var rootRef = firebase.database().ref()
+    //    var refOne = firebase.database("shakes/"+dbArrayRef)
+    //     console.log(database.snapshot.val(), 'snap val');
+    //     console.log(database.child.val(), 'child val');
+    //     console.log(database.snapshot.ref(), 'snap ref');
+    //     console.log(database.child.ref(), 'child ref');
+        
+        var lastEntry = database.ref().orderByChild("dateAdded").limitToLast(1).once('value').then(function(){
+            console.log (lastEntry, 'last Entry ***')
+        });
+        
+
         var musicObject = {
             artist: artist,
             song: song,
@@ -102,6 +115,8 @@ $(document).ready(function () {
         trendingArray.push(musicObject);  // Updates trending array with user request artist&song
         console.log(trendingArray, "Trending Artist Array")
         database.ref().push(trendingArray);  // Updates database with the new array
+        
+        
         //  after each user submits artist choice, store the trending array to the database; then, with each UI app instance set the initial value equal to the database stored value.
         // lastly iterate over the array and count each repeat occurrences to create a trending variable for each artist //
     }
