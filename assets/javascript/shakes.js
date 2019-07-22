@@ -98,12 +98,26 @@ $(document).ready(function () {
         song = $("#songName").val().trim();
         artist = $("#artistName").val().trim();
         likeCount = 1;
+
+        if( $(".input").val() == ""){
+            $(".modal").addClass("is-active");
+            $(".modal-content").append("<p>Please enter an Artist and Song</p>");
+         }
+         else{
         //Interaction with Remote Servers & HTML - callback to fire lyricRequest() main function
         console.log(artist, song, 'are key UI parameters for cb function ***')
         lyricRequest(artist, song)  //  This callback fires main function lyricRequest() with two arguments
         logDatabase()  // Interaction with Database
         // location.reload()
+         }
+       
+
+
     });
+
+    $(document).on("click", ".delete", function(){
+        $(".modal").remove();
+    })
 
     $(".random").on("click", function (event) {
         event.preventDefault();
