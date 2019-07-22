@@ -48,8 +48,10 @@ $(document).ready(function () {
                     success: function (response) {
                         console.log(response, 'shakespeare translation object')  // logs API JSON object from API call#2
                         translated = response.contents.translated
-                        console.log(translated)    // logs translation to console //
-                        $('#trending').append("<div class = 'lyric'>" + translated + "</div>");
+                        // console.log(translated)    // logs translation to console //
+                        $("#one").remove()
+                        $("#pTrend").prepend("<p class ='translated-text'>" + translated + "</p>");
+                        $(".translated-text").append("<button class='like-button' type='submit'>Like</button>");
                     },
                     error: function (xhr) {
                         console.log(xhr)
