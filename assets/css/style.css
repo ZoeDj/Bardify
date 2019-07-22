@@ -41,6 +41,10 @@
 
 .input {
     margin: 0 auto;
+
+}
+
+.input {
     width: 50%;
     margin-left: 25%;
     font-family: 'Cinzel Decorative';
@@ -51,11 +55,15 @@
 }
 
 .hero {
+
     font-family: 'Cinzel Decorative' !important;
     background: linear-gradient(to bottom,#800000, #ff9933 100%);
+
+        background: linear-gradient(to bottom,#800000, #ff9933 100%);
+
 }
 
-#submit {
+.submit {
     width: 30%;
     float: left;
     margin-left: 60%; 
@@ -63,12 +71,15 @@
     padding: 12px;
 }
 
-#random {
+.random {
     width: 30%;
     float: right;
     margin-right: 60%; 
     margin-top: 0%;
     padding: 12px;
+
+    font-family: 'Cinzel Decorative'; 
+
 }
 
 #pTrend {
@@ -94,9 +105,10 @@
 
 /* dynamically formed page for displaying songs */
 .translated-text {
-    padding: 5% 30%;
+    padding: 20px 25%;
     color: white;
 }
+
 .like-button {
-    margin: 5%;
+    margin: 10px;
 }
