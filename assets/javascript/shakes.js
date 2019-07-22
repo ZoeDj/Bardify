@@ -52,33 +52,28 @@ $(document).ready(function () {
 
                         $("#one").hide();
                         $("#pTrend").prepend("<p class ='translated-text'>" + translated + "</p>");
-                        $(".translated-text").append("<br><button class='button is-rounded has-text-centered search' type='submit'>Search</button><br><br>");
-                        $(".translated-text").append("<br><button class='button is-rounded has-text-centered clear' type='clear'>Clear the Page</button><br>");
-                        $(".translated-text").append("<br><button class='button is-rounded has-text-centered like-button' type='submit'>Like</button><br>");
-                       
+                        $(".translated-text").append("<button class='button is-rounded has-text-centered search display' type='submit'>Search</button>");
+                        $(".translated-text").append("<button class='button is-rounded has-text-centered clear display' type='clear'>Clear the Page</button>");
                         
                         $(".clear").on("click", function (event) {
                         event.preventDefault();
                         $(".translated-text").hide();
-                        $(".like-button").remove();
-                        $(".clear").remove();
-                        $(".search").remove();
+                        $(".clear").detach();
+                        $(".search").detach();
                         $("#one").show();
                         });
 
                         $(".search").on("click", function (event) {
                         event.preventDefault();
-                        $(".translated-text").append($("#input-form").show());
-                        $(".like-button").remove();
-                        $(".clear").remove();
-                        $(".search").remove();
+                        $("#pTrend").append($("#input-form").show());
+                        $(".clear").detach();
+                        $(".search").detach();
                         });
 
                         $(".random").on("click", function (event) {
                         event.preventDefault();
-                        $(".like-button").remove();
-                        $(".clear").remove();
-                        $(".search").remove();
+                        $(".clear").detach();
+                        $(".search").detach();
                         });
                     },
                     error: function (xhr) {
