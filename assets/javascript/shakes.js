@@ -1,13 +1,13 @@
 // JQuery: Document Ready //
 $(document).ready(function () {
 
-    //  Database Configuration //
+    //Database Set Up - ICEBOX FEATURE  //  Storage of Artist and SongName to Firebase  //
     var firebaseConfig = {
         apiKey: "AIzaSyCsMczUUrLbOzNHExrxUMXaJARFdkLldSk",
         authDomain: "shakes-e2b51.firebaseapp.com",
         databaseURL: "https://shakes-e2b51.firebaseio.com",
         projectId: "shakes-e2b51",
-        storageBucket: "shakes-e2b51.appspot.com",
+        storageBucket: "",
         messagingSenderId: "793021669681",
         appId: "1:793021669681:web:873f46e902cad6fc"
     };
@@ -22,7 +22,6 @@ $(document).ready(function () {
     var resultSorting = {};
     var trendingArray = [];
 
-
     /// *** MAIN FUNCTION ***/// called by submit btn eventlistener, and contains a promise to address asyncronous return of API#1
     function lyricRequest(artist, song) {
         //  First API Call to retrieve music lyrics based artist and song parameters
@@ -35,7 +34,8 @@ $(document).ready(function () {
                 console.log(data, 'lyric object');  // logs API JSON object from API call#1
                 var test = data.mus[0].text;
                 var testTrim = test.trim();
-                lyricOutput = testTrim   //.replace(/[\r\n]*/g, "")  // removes returns and output breaks
+                lyricOutput = testTrim.replace(/[\r\n]*/g, "")  // removes returns and output breaks
+                console.log(lyricOutput)
             }).then(function shakeTrans() {
                 // Second API Call to translate music lyric into Shakespearean English -- Will not execute until first API completes
                 var userQuote = lyricOutput.substring(0, 1000);
@@ -46,20 +46,54 @@ $(document).ready(function () {
                     cache: false,
                     type: "POST",
                     success: function (response) {
-                        // console.log(response, 'shakespeare translation object')  // logs API JSON object from API call#2
+                        console.log(response, 'shakespeare translation object')  // logs API JSON object from API call#2
                         translated = response.contents.translated
                         // console.log(translated)    // logs translation to console //
-                        $('#trending').append("<div class = 'lyric'>" + translated + "</div>");
+
+                        $("#one").hide();
+                        $("#pTrend").prepend("<p class ='translated-text'>" + translated + "</p>");
+                        //Adding playback button
+                        $(".translated-text").append("<button class='button is-rounded has-text-centered play' type='play'>Play</button>");
+                        //
+                        $(".translated-text").append("<button class='button is-rounded has-text-centered search display' type='submit'>Search</button>");
+                        $(".translated-text").append("<button class='button is-rounded has-text-centered clear display' type='clear'>Clear the Page</button>");
+
+                        $(".clear").on("click", function (event) {
+                            event.preventDefault();
+                            $(".translated-text").hide();
+                            $(".clear").detach();
+                            $(".search").detach();
+                            $("#one").show();
+                        });
+
+                        $(".search").on("click", function (event) {
+                            event.preventDefault();
+                            $("#pTrend").append($("#input-form").show());
+                            $(".clear").detach();
+                            $(".search").detach();
+                        });
+
+                        $(".random").on("click", function (event) {
+                            event.preventDefault();
+                            $(".clear").detach();
+                            $(".search").detach();
+                        });
                     },
                     error: function (xhr) {
                         console.log(xhr)
-                    }     // 
+                    }
                 });
             });
     };
 
+
+    //Getting response from play button
+    $(document).on("click", ".play", function () {
+        //console.log($("p.translated-text").text())
+        responsiveVoice.speak($(".translated-text").text(), "US English Male");
+    });
     //  User Interface -  event listeners,global execution callbacks
-    $("#submit").on("click", function (event) {
+    $(".submit").on("click", function (event) {
         event.preventDefault();
         song = $("#songName").val().trim();
         artist = $("#artistName").val().trim();
@@ -71,7 +105,7 @@ $(document).ready(function () {
         // location.reload()
     });
 
-    $("#random").on("click", function (event) {
+    $(".random").on("click", function (event) {
         event.preventDefault();
         var randomArray = [
             { artist: "Ariana Grande", song: "7 rings" },
@@ -83,6 +117,7 @@ $(document).ready(function () {
             { artist: "Clash", song: "Should I stay or should I go" },
         ]
         var randomNum = Math.floor(Math.random() * randomArray.length);
+        console.log(randomNum)
         var randomArtist = randomArray[randomNum].artist;
         var randomSong = randomArray[randomNum].song;
         console.log(randomArtist, randomSong, 'are random UI parameters for cb function ***')
@@ -95,7 +130,6 @@ $(document).ready(function () {
         var lastEntry = database.ref().orderByChild("dateAdded").limitToLast(1).once('value', function (snap) {
             trendingArray = snap.val()[Object.keys(snap.val())[0]];
             console.log(trendingArray, 'after db pull');
-
             var musicObject = {
                 artist: artist,
                 song: song,
@@ -104,17 +138,6 @@ $(document).ready(function () {
             }
             trendingArray.push(musicObject);    //  update array of objects to include current user choice
             database.ref().push(trendingArray);  //  push updated array to realtime DB
-
-
-            // Update database tracking array with current user choice 
-            // var musicObject = {
-            //     artist: artist,
-            //     song: song,
-            //     likeCount: likeCount,
-            //     timestamp: firebase.database.ServerValue.TIMESTAMP
-            // }
-            // trendingArray.push(musicObject);
-            // database.ref().push(trendingArray);
             // Iterator (put inside function logDatabase, once lastEntry.val() is pulled)  == could use .reduce() or count the array
             for (var i = 0; i < trendingArray.length; i++) {
                 console.log(trendingArray, "Trending Artist Array")
@@ -123,115 +146,28 @@ $(document).ready(function () {
                     return n + (CREATOR.artist == trendingArray[i].artist);
                 }, 0);
                 console.log(trendingArray[i].artist, ': ', numHits, ' hits');
-
                 resultSorting[trendingArray[i].artist] = numHits; //create new object keys  ===>  obj["key3"] = "value3";
-
-                // resultSorting.name = trendingArray[i].artist // create new object key value pair using dot notation objectName.newKey = newValue
-                // resultSorting.likes = numHits
-
-                console.log(resultSorting, 'result Sorting Object***')
-
-                $("#trending-image1").attr("src", "./assets/beyonce.jpeg");
-                $("#trending-image2").attr("src", "./assets/ladygaga.jpeg");
-                $("#trending-image3").attr("src", "./assets/id.jpeg");
-                $("#trending-image4").attr("src", "./assets/arianag.jpeg");
-                $("#trending-image5").attr("src", "./assets/lilnnas.jpeg");
-
+                console.log(resultSorting, 'result Sorting Object***');
             }
 
-            /////   sorting 
-            // Convert obj key/value pairs to unsorted array
             var results = [];
             for (var key in resultSorting) {
                 results.push({ name: key, likes: resultSorting[key] });
             }
-
             console.log("--- UNSORTED ---");
             console.log(results);
-
             // Sort array
             results.sort(function (a, b) {
                 return b.likes - a.likes;
             })
-
             console.log("--- SORTED ---");
             console.log(results);
+            ///  Placeholder to replace html src attribute with top trending order
+            $("#trending-image1").attr("src", "./assets/beyonce.jpeg");
+            $("#trending-image2").attr("src", "./assets/ladygaga.jpeg");
+            $("#trending-image3").attr("src", "./assets/id.jpeg");
+            $("#trending-image4").attr("src", "./assets/arianag.jpeg");
+            $("#trending-image5").attr("src", "./assets/lilnnas.jpeg");
         });
     };
-
-
 });
-
-
-
-
-
-
-
-
-
-
-/////  ICE BOX FUNCTIONS ///
-
-// // Database Functions & Listeners
-// function logDatabase() {
-//     //    var rootRef = firebase.database().ref()
-//     //    var refOne = firebase.database("shakes/"+dbArrayRef)
-//     //     console.log(database.snapshot.val(), 'snap val');
-//     //     console.log(database.child.val(), 'child val');
-//     //     console.log(database.snapshot.ref(), 'snap ref');
-//     //     console.log(database.child.ref(), 'child ref');
-//     var lastEntry = database.ref().orderByChild("dateAdded").limitToLast(1).once('value').then(function () {
-//         console.log(lastEntry, 'last Entry ***')
-//     });
-//     var musicObject = {
-//         artist: artist,
-//         song: song,
-//         likeCount: likeCount,
-//         timestamp: firebase.database.ServerValue.TIMESTAMP
-//     }
-//     trendingArray.push(musicObject);  // Updates trending array with user request artist&song
-//     database.ref().push(trendingArray);  // Updates database with the new array
-//     // database.ref().push(musicObject);  // Code for the push to firebase database
-//     //  after each user submits artist choice, store the trending array to the database; then, with each UI app instance set the initial value equal to the database stored value.
-//     // lastly iterate over the array and count each repeat occurrences to create a trending variable for each artist //
-
-
-// // Iterator (put inside function logDatabase, once lastEntry.val() is pulled)  == could use .reduce() or count the array
-// for (var i=0; 0<trendingArray.length;i++){
-//     console.log(trendingArray, "Trending Artist Array")
-//     var artistsI = trendingArray.artist[i]
-//     var numHits = trendingArray.reduce(function (n, artist) {
-//         return n + (trendingArray.artist == trendingArray.artist[i]);
-//     }, 0);
-//     console.log(artistI, ': ',numHits, ' hits');
-// }
-// }
-
-// function count() {
-//     array_elements = ["a", "b", "c", "d", "e", "a", "b", "c", "f", "g", "h", "h", "h", "e", "a"];
-
-//     trendingArray.sort();
-
-//     var current = null;
-//     var count = 0;
-//     for (var i = 0; i < trendingArray.length; i++) {
-//         if (trendingArray[i] != current) {
-//             if (count > 0) {
-//                 console.log(current + ' comes --> ' + count + ' times<br>');
-//             }
-//             current = array_elements[i];
-//             count = 1;
-//         } else {
-//             cnt++;
-//         }
-//     }
-//     if (count > 0) {
-//         document.write(current + ' comes --> ' + cnt + ' times');
-//     }
-
-// }
-
-// var counts = {};
-// trendingArray.forEach(function(x) { counts[x] = (counts[x] || 0)+1; });
-// console.log(counts, 'Counts *******');
