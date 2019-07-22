@@ -52,6 +52,9 @@ $(document).ready(function () {
 
                         $("#one").hide();
                         $("#pTrend").prepend("<p class ='translated-text'>" + translated + "</p>");
+                        //Adding playback button
+                        $(".translated-text").append("<button class='button is-rounded has-text-centered play' type='play'>Play</button>");
+                        //
                         $(".translated-text").append("<button class='button is-rounded has-text-centered search display' type='submit'>Search</button>");
                         $(".translated-text").append("<button class='button is-rounded has-text-centered clear display' type='clear'>Clear the Page</button>");
                         
@@ -84,7 +87,11 @@ $(document).ready(function () {
     };
 
     
-
+    //Getting response from play button
+    $(document).on("click", ".play", function(){
+        //console.log($("p.translated-text").text())
+        responsiveVoice.speak($(".translated-text").text(), "US English Male");
+    });
     //  User Interface -  event listeners,global execution callbacks
     $(".submit").on("click", function (event) {
         event.preventDefault();
@@ -133,6 +140,6 @@ $(document).ready(function () {
 
         var returnArtist = childSnapshot.val().artist;
         var returnSong = childSnapshot.val().song;
-            });
+        });
 
 });
