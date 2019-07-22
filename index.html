@@ -11,15 +11,15 @@
     <!--Link to CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
     <link href="https://fonts.googleapis.com/css?family=Cinzel+Decorative:400,900&display=swap" rel="stylesheet">
-    <title>Document</title>
     <title>Shakespeare, Yo</title>
 
 </head>
 
 <body>
     <section class="hero is-dark is-fullheight has-text-centered">
+        <div id='one'>
         <!-- Hero head: will stick at the top -->
-        <div class="hero-head">
+        <!-- <div class="hero-head">  -->
 
             <!-- Hero content: will be in the middle -->
             <div class="hero-body">
@@ -27,94 +27,94 @@
                     <img src="./assets/s-image-smol.png" alt="Logo">
                 </div>
             </div>
-
+    
             <!-- Hero footer: will stick at the bottom -->
+            <div id = "input-form">
             <div class="hero-foot">
                 <nav class="tabs is-boxed is-fullwidth">
                     <div class="container has-text-centered">
+                        <h1>Bardify</h1>
                         <div class="field">
+                          <p>Enter an artist and song below
+                              <br>
+                              Or, try Random for some favorites.
+                          </p>
+                          <br>
                             <form>
-                            <div class="control">
-                                <input class="input is-rounded" type="text" id="artistName"
-                                    placeholder="Enter Artist Name">
-                            </div>
+                                <div class="control">
+                                    <input class="input is-rounded" type="text" id="artistName"
+                                        placeholder="Enter Artist Name">
+                                </div>
                         </div>
                         <div class="field">
                             <div class="control">
-                                <input class="input is-rounded" type="text" id="songName" 
+                                <input class="input is-rounded" type="text" id="songName"
                                     placeholder="Enter Song Title">
                                 </form>
                             </div>
                         </div>
-
-
+                    <!-- </div>
+                    <div class="container has-text-centered"> -->
                         <ul>
-                            <li><button id="submit" type = "submit">Submit</button></li>
-
-                            <li><a id="random">Random</a></li>
+                            <li><button class="button is-rounded has-text-centered submit" type="submit">Submit</button></li>
+                            <li><button class="button is-rounded has-text-centered random">Random</button></li>
                         </ul>
-
                     </div>
                 </nav>
             </div>
-            <br>
-            <br>
 
-
-            <p id="pTrend">See What's Trending</p>
-            <br>
-         
-            <div class="container has-text-centered">
-                <div class="columns">
-                    <div class="column is-1"></div>
-                    <div class="column is-2">
-                        <figure  class="figure image is-64x64">
-                            <img id = 'trending-image1' src="./assets/beyonce.jpeg" alt="Logo">
-                        </figure>
-                    </div>
-                    <div class="column is-2">
-                        <figure class="figure image is-64x64">
-                            <img id = 'trending-image2'src="./assets/ladygaga.jpeg" alt="Logo">
-                        </figure>
-                    </div>
-                    <div class="column is-2">
-                        <figure class="figure image is-64x64">
-                            <img id = 'trending-image3'src="./assets/id.jpeg" alt="Logo">
-                        </figure>
-                    </div>
-                    <div class="column is-2">
-                        <figure  class="figure image is-64x64">
-                            <img id = 'trending-image4' src="./assets/arianag.jpeg" alt="Logo">
-                        </figure>
-                    </div>
-                    <div class="column is-2">
-                        <figure  class="figure image is-64x64">
-                            <img id = 'trending-image5' src="./assets/lilnnas.jpeg" alt="Logo">
-                        </figure>
-                    </div>
-                    <div class="column is-1">
-                    </div>
-                </div>
             </div>
-            <br>
-            <br>
+            </div>
+        <p id="pTrend">See What's Trending</p>
+        <div class="container has-text-centered">
+            <div class="columns">
+                <div class="column is-1"></div>
+                <div class="column is-2">
+                    <figure class="figure image is-64x64">
+                        <img src="./assets/beyonce.jpeg" alt="Logo">
+                    </figure>
+                </div>
+                <div class="column is-2">
+                    <figure class="figure image is-64x64">
+                        <img src="./assets/ladygaga.jpeg" alt="Logo">
+                    </figure>
+                </div>
+                <div class="column is-2">
+                    <figure class="figure image is-64x64">
+                        <img src="./assets/id.jpeg" alt="Logo">
+                    </figure>
+
+                </div>
+                <div class="column is-2">
+                    <figure class="figure image is-64x64">
+                        <img src="./assets/arianag.jpeg" alt="Logo">
+                    </figure>
+                </div>
+                <div class="column is-2">
+                    <figure class="figure image is-64x64">
+                        <img src="./assets/lilnnas.jpeg" alt="Logo">
+                    </figure>
+            </div>
+        </div>
+        <footer class="hero-footer">
+            <div class="content has-text-centered">
+                <p>
+                    Bardify by <a class="link" href="https://github.com/ZoeDj">Zoe </a>, <a class="link"
+                        href="https://github.com/Kalobar4">Brad</a>, <a class="link"
+                        href="https://github.com/kattymay">Kat</a>, and <a class="link"
+                        href="https://github.com/dps0610">David</a>.
+                    <br>
+                    <br>
+                    Powered by Vaga Lume, Funtranslations, and IBM Text to Speech.
+                </p>
+            </div>
+        </footer>
     </section>
 
-
-    <footer class="footer">
-        <div class="content has-text-centered">
-          <p>
-             Bardify by <a class="link" href="https://github.com/ZoeDj">Zoe </a>, <a class="link" href="https://github.com/Kalobar4">Brad</a>, <a class="link" href="https://github.com/kattymay">Kat</a>, and <a class="link" href="https://github.com/dps0610">David</a>.
-             <br>
-             Powered by Vaga Lume, Funtranslations, and IBM Text to Speech.
-          </p>
-        </div>
-      </footer>
-
-
     <!-- JQuery Call-->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=5xEv5Kp1"></script>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.hoverintent/1.10.0/jquery.hoverIntent.min.js"></script>
     <!-- Javascript Script Call-->
     <script src="./assets/javascript/shakes.js"></script>
     <!-- The core Firebase JS SDK is always required and must be listed first -->
@@ -122,7 +122,4 @@
     <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
 </body>
 
-
-
 </html>
-

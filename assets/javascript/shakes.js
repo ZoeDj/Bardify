@@ -36,7 +36,9 @@ $(document).ready(function () {
                 var testTrim = test.trim();
                 lyricOutput = testTrim.replace(/[\r\n]*/g, "")  // removes returns and output breaks
                 console.log(lyricOutput)
+
             }).then(function shakeTrans() {
+
                 // Second API Call to translate music lyric into Shakespearean English -- Will not execute until first API completes
                 var userQuote = lyricOutput.substring(0, 1000);
                 var queryURL = "https://api.funtranslations.com/translate/shakespeare.json?text=" + encodeURIComponent(userQuote) + "&api_key=bCjn5kpx1Lialiqvaw_g7QeF"
@@ -58,6 +60,7 @@ $(document).ready(function () {
                         $(".translated-text").append("<button class='button is-rounded has-text-centered search display' type='submit'>Search</button>");
                         $(".translated-text").append("<button class='button is-rounded has-text-centered clear display' type='clear'>Clear the Page</button>");
 
+
                         $(".clear").on("click", function (event) {
                             event.preventDefault();
                             $(".translated-text").hide();
@@ -77,6 +80,28 @@ $(document).ready(function () {
                             event.preventDefault();
                             $(".clear").detach();
                             $(".search").detach();
+
+                        
+                        $(".clear").on("click", function (event) {
+                        event.preventDefault();
+                        $(".translated-text").hide();
+                        $(".clear").detach();
+                        $(".search").detach();
+                        $("#one").show();
+                        });
+
+                        $(".search").on("click", function (event) {
+                        event.preventDefault();
+                        $("#pTrend").append($("#input-form").show());
+                        $(".clear").detach();
+                        $(".search").detach();
+                        });
+
+                        $(".random").on("click", function (event) {
+                        event.preventDefault();
+                        $(".clear").detach();
+                        $(".search").detach();
+
                         });
                     },
                     error: function (xhr) {
@@ -89,6 +114,7 @@ $(document).ready(function () {
 
     //Getting response from play button
     $(document).on("click", ".play", function () {
+
         //console.log($("p.translated-text").text())
         responsiveVoice.speak($(".translated-text").text(), "US English Male");
     });
@@ -149,6 +175,7 @@ $(document).ready(function () {
                 resultSorting[trendingArray[i].artist] = numHits; //create new object keys  ===>  obj["key3"] = "value3";
                 console.log(resultSorting, 'result Sorting Object***');
             }
+
 
             var results = [];
             for (var key in resultSorting) {

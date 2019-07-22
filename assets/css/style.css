@@ -37,18 +37,16 @@
 
 .hero {
    margin: 0 auto;
-
 }
 
 .input {
     margin: 0 auto;
-
 }
 
-#input {
+.input {
     width: 50%;
     margin-left: 25%;
-
+    font-family: 'Cinzel Decorative';
 }
 
 .figure {
@@ -56,43 +54,63 @@
 }
 
 .hero {
+    font-family: 'Cinzel Decorative' !important;
+    background: linear-gradient(to bottom,#800000, #ff9933 100%);
+    background: linear-gradient(to bottom,#800000, #ff9933 100%);
+<<<<<<< HEAD
 
-        background: linear-gradient(to bottom,#800000, #ff9933 100%);
+=======
+>>>>>>> bf3ebe4e1963c69eda3d9bc0d99e8c88c9eb0254
 }
 
-#submit {
+.submit {
     width: 30%;
     float: left;
-    margin-left: 70%; 
+    margin-left: 60%; 
     margin-top: 0%;
     padding: 12px;
-    font-family: 'Cinzel Decorative';
 }
 
-#random {
+.random {
     width: 30%;
     float: right;
-    margin-right: 70%; 
+    margin-right: 60%; 
     margin-top: 0%;
     padding: 12px;
+<<<<<<< HEAD
     font-family: 'Cinzel Decorative';
-    
+=======
+    font-family: 'Cinzel Decorative'; 
+>>>>>>> bf3ebe4e1963c69eda3d9bc0d99e8c88c9eb0254
 }
 
 #pTrend {
-    font-family: 'Cinzel Decorative';
     color: maroon;
-    margin-top: 5%;
+    margin-top: 50px;
     padding: 12px;
 }
 
+.hero-footer {
+   color: maroon;
+   padding-top: 30px;
+   padding-bottom: 60px;
+}
 
-#textInput {
+.link {
+    color: white;
+}
+
+.button {
+    color: maroon;
     font-family: 'Cinzel Decorative';
 }
 
-.footer {
-    background-color: maroon;
-    color: wheat;
-    padding-top: 60px;
+/* dynamically formed page for displaying songs */
+.translated-text {
+    padding: 20px 25%;
+    color: white;
+}
+.display{
+    display:block;
+    margin: 10px 0;
 }
