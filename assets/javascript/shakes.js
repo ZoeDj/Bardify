@@ -52,13 +52,30 @@ $(document).ready(function () {
 
                         $("#one").hide();
                         $("#pTrend").prepend("<p class ='translated-text'>" + translated + "</p>");
-                        $(".translated-text").append("<br><button class='button is-rounded has-text-centered like-button' type='submit'>Like</button><br>");
-                        $(".translated-text").append("<button id='search' class='button is-rounded has-text-centered' type='submit'>Search</button>");
+                        $(".translated-text").after("<br><button class='button is-rounded has-text-centered search' type='submit'>Search</button><br><br>");
+                        $(".translated-text").after("<br><button class='button is-rounded has-text-centered clear' type='clear'>Clear the Page</button><br>");
+                        $(".translated-text").after("<br><button class='button is-rounded has-text-centered like-button' type='submit'>Like</button><br>");
+                       
                         
-                        $("#search").on("click", function (event) {
+                        $(".clear").on("click", function (event) {
                         event.preventDefault();
                         $(".translated-text").hide();
                         $("#one").show();
+                        });
+
+                        $(".search").on("click", function (event) {
+                        event.preventDefault();
+                        $(".translated-text").after($("#input-form").show());
+                        $(".like-button").remove();
+                        $(".clear").remove();
+                        $(".search").remove();
+                        });
+
+                        $(".random").on("click", function (event) {
+                        event.preventDefault();
+                        $(".like-button").remove();
+                        $(".clear").remove();
+                        $(".search").remove();
                         });
                     },
                     error: function (xhr) {
@@ -71,7 +88,7 @@ $(document).ready(function () {
     
 
     //  User Interface -  event listeners,global execution callbacks
-    $("#submit").on("click", function (event) {
+    $(".submit").on("click", function (event) {
         event.preventDefault();
         song = $("#songName").val().trim();
         artist = $("#artistName").val().trim();
@@ -83,7 +100,7 @@ $(document).ready(function () {
         // location.reload()
     });
 
-    $("#random").on("click", function (event) {
+    $(".random").on("click", function (event) {
         event.preventDefault();
         var randomArray= [
             {artist: "Ariana Grande", song:"7 rings"}, 
