@@ -57,6 +57,10 @@
     font-family: 'Cinzel Decorative' !important;
     background: linear-gradient(to bottom,#800000, #ff9933 100%);
     background: linear-gradient(to bottom,#800000, #ff9933 100%);
+<<<<<<< HEAD
+
+=======
+>>>>>>> bf3ebe4e1963c69eda3d9bc0d99e8c88c9eb0254
 }
 
 .submit {
@@ -73,7 +77,11 @@
     margin-right: 60%; 
     margin-top: 0%;
     padding: 12px;
+<<<<<<< HEAD
+    font-family: 'Cinzel Decorative';
+=======
     font-family: 'Cinzel Decorative'; 
+>>>>>>> bf3ebe4e1963c69eda3d9bc0d99e8c88c9eb0254
 }
 
 #pTrend {
