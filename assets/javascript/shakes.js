@@ -52,20 +52,23 @@ $(document).ready(function () {
 
                         $("#one").hide();
                         $("#pTrend").prepend("<p class ='translated-text'>" + translated + "</p>");
-                        $(".translated-text").after("<br><button class='button is-rounded has-text-centered search' type='submit'>Search</button><br><br>");
-                        $(".translated-text").after("<br><button class='button is-rounded has-text-centered clear' type='clear'>Clear the Page</button><br>");
-                        $(".translated-text").after("<br><button class='button is-rounded has-text-centered like-button' type='submit'>Like</button><br>");
+                        $(".translated-text").append("<br><button class='button is-rounded has-text-centered search' type='submit'>Search</button><br><br>");
+                        $(".translated-text").append("<br><button class='button is-rounded has-text-centered clear' type='clear'>Clear the Page</button><br>");
+                        $(".translated-text").append("<br><button class='button is-rounded has-text-centered like-button' type='submit'>Like</button><br>");
                        
                         
                         $(".clear").on("click", function (event) {
                         event.preventDefault();
                         $(".translated-text").hide();
+                        $(".like-button").remove();
+                        $(".clear").remove();
+                        $(".search").remove();
                         $("#one").show();
                         });
 
                         $(".search").on("click", function (event) {
                         event.preventDefault();
-                        $(".translated-text").after($("#input-form").show());
+                        $(".translated-text").append($("#input-form").show());
                         $(".like-button").remove();
                         $(".clear").remove();
                         $(".search").remove();
