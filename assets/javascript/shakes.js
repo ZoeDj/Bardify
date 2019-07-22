@@ -10,7 +10,7 @@ $(document).ready(function () {
         storageBucket: "shakes-e2b51.appspot.com",
         messagingSenderId: "793021669681",
         appId: "1:793021669681:web:873f46e902cad6fc"
-      };
+    };
     firebase.initializeApp(firebaseConfig);
 
     // Initial Values //
@@ -19,7 +19,8 @@ $(document).ready(function () {
     var artist = '';
     var song = '';
     var likeCount = 0;
-    var resultSorting = [];
+    var resultSorting = {};
+    var trendingArray = [];
 
 
     /// *** MAIN FUNCTION ***/// called by submit btn eventlistener, and contains a promise to address asyncronous return of API#1
@@ -45,9 +46,9 @@ $(document).ready(function () {
                     cache: false,
                     type: "POST",
                     success: function (response) {
-                       // console.log(response, 'shakespeare translation object')  // logs API JSON object from API call#2
+                        // console.log(response, 'shakespeare translation object')  // logs API JSON object from API call#2
                         translated = response.contents.translated
-                       // console.log(translated)    // logs translation to console //
+                        // console.log(translated)    // logs translation to console //
                         $('#trending').append("<div class = 'lyric'>" + translated + "</div>");
                     },
                     error: function (xhr) {
@@ -95,16 +96,16 @@ $(document).ready(function () {
             trendingArray = snap.val()[Object.keys(snap.val())[0]];
             console.log(trendingArray, 'after db pull');
 
-        var musicObject = {
-            artist: artist,
-            song: song,
-            likeCount: likeCount,
-            timestamp: firebase.database.ServerValue.TIMESTAMP
-        }
-        trendingArray.push(musicObject);    //  update array of objects to include current user choice
-        database.ref().push(trendingArray);  //  push updated array to realtime DB
-        
-        
+            var musicObject = {
+                artist: artist,
+                song: song,
+                likeCount: likeCount,
+                timestamp: firebase.database.ServerValue.TIMESTAMP
+            }
+            trendingArray.push(musicObject);    //  update array of objects to include current user choice
+            database.ref().push(trendingArray);  //  push updated array to realtime DB
+
+
             // Update database tracking array with current user choice 
             // var musicObject = {
             //     artist: artist,
@@ -122,43 +123,43 @@ $(document).ready(function () {
                     return n + (CREATOR.artist == trendingArray[i].artist);
                 }, 0);
                 console.log(trendingArray[i].artist, ': ', numHits, ' hits');
-               
-                resultSorting.push({ name: trendingArray[i].artist, likes: numHits})
-                console.log(resultSorting, 'result Sorting Array***')
 
-                $("#trending-image1").attr("src","./assets/beyonce.jpeg");
-                $("#trending-image2").attr("src","./assets/ladygaga.jpeg");
-                $("#trending-image3").attr("src","./assets/id.jpeg");
-                $("#trending-image4").attr("src","./assets/arianag.jpeg");
-                $("#trending-image5").attr("src","./assets/lilnnas.jpeg");
+                resultSorting[trendingArray[i].artist] = numHits; //create new object keys  ===>  obj["key3"] = "value3";
+
+                // resultSorting.name = trendingArray[i].artist // create new object key value pair using dot notation objectName.newKey = newValue
+                // resultSorting.likes = numHits
+
+                console.log(resultSorting, 'result Sorting Object***')
+
+                $("#trending-image1").attr("src", "./assets/beyonce.jpeg");
+                $("#trending-image2").attr("src", "./assets/ladygaga.jpeg");
+                $("#trending-image3").attr("src", "./assets/id.jpeg");
+                $("#trending-image4").attr("src", "./assets/arianag.jpeg");
+                $("#trending-image5").attr("src", "./assets/lilnnas.jpeg");
 
             }
+
+            /////   sorting 
+            // Convert obj key/value pairs to unsorted array
+            var results = [];
+            for (var key in resultSorting) {
+                results.push({ name: key, likes: resultSorting[key] });
+            }
+
+            console.log("--- UNSORTED ---");
+            console.log(results);
+
+            // Sort array
+            results.sort(function (a, b) {
+                return b.likes - a.likes;
+            })
+
+            console.log("--- SORTED ---");
+            console.log(results);
         });
-    }
+    };
 
 
-    // var trendingObj = {
-    //     "Breaking Benjamin": 5,
-    //     "Pink": 9,
-    //     "Metallica": 7
-    //   }
-      
-    //   // Convert obj key/value pairs to unsorted array
-    //   var results = [];
-    //   for (var key in trendingObj) {
-    //     results.push({ name: key, likes: trendingObj[key] });
-    //   }
-      
-    //   console.log("--- UNSORTED ---");
-    //   console.log(results);
-      
-    //   // Sort array
-    //   results.sort(function (a, b) {
-    //     return b.likes - a.likes;
-    //   })
-      
-    //   console.log("--- SORTED ---");
-    //   console.log(results);
 });
 
 
