@@ -105,9 +105,15 @@ $(document).ready(function () {
         if ($(".search")) { $(".search").detach(); }
     });
 
-    //Plays audio of bardified lyric
+    //Audio playback buttons
     $(document).on("click", ".play", function () {
         responsiveVoice.speak($(".translated-text").text(), "US English Male");
+    });
+    $(document).on("click", ".pause", function () {
+        responsiveVoice.pause();
+    });
+    $(document).on("click", ".resume", function () {
+        responsiveVoice.resume();
     });
 
     // Database Function  to track trending artists 
@@ -143,15 +149,6 @@ $(document).ready(function () {
                 return b.likes - a.likes;
             })
             console.log(results, "=== SORTED TREND ===");
-            /// Method1 for loop
-            var arr2 = [];
-            var string1 = "";
-            for (var property1 in results) {
-                string1 += results[property1];
-            }
-            var result2 = arr2.join(',');
-            console.log(result2);
-            console.log(arr2);
             /// Method2  object.keys()
             trendArr2 = Object.values(results);
             console.log(trendArr2[0].name, trendArr2[1].name, trendArr2[2].name, trendArr2[3].name, trendArr2[4].name, 'are the top 5 most clicked names')
@@ -165,9 +162,10 @@ $(document).ready(function () {
         $("#pTrend").before("<p class ='translated-text'>" + translated + "</p>");
         var newDiv  = $("<div class='translated-buttons'></div>")
         $("#pTrend").before(newDiv)
-        //Adding playback button
+        //Adding playback buttons
         $(newDiv).append("<button class='button is-rounded has-text-centered play' type='play'>Play</button>");
-        //
+        $(newDiv).append("<button class='button is-rounded has-text-centered pause' type='pause'>Pause</button>");
+        $(newDiv).append("<button class='button is-rounded has-text-centered resume' type='resume'>Resume</button>");
         $(newDiv).append("<button class='button is-rounded has-text-centered search display' type='submit'>Search</button>");
         $(newDiv).append("<button class='button is-rounded has-text-centered clear display' type='clear'>Clear the Page</button>");
 
