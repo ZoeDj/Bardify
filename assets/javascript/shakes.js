@@ -305,37 +305,37 @@ $(document).ready(function () {
             });
         }
 
-        if (trendArr2[3].name === 'beyonce') {
+        if (trendArr2[3].name === '') {
             $("#trending-image3").fadeOut(function () {
                 $(this).load(function () { $(this).fadeIn("slow"); });
                 $(this).attr("src", "./assets/beyonce.jpeg");
             });
         }
-        else if (trendArr2[3].name === 'lady gaga') {
+        else if (trendArr2[3].name === 'LADY GAGA') {
             $("#trending-image3").fadeOut(function () {
                 $(this).load(function () { $(this).fadeIn("slow"); });
                 $(this).attr("src", "./assets/ladygaga.jpeg");
             });
         }
-        else if (trendArr2[3].name === 'imagine dragons') {
+        else if (trendArr2[3].name === 'IMAGINE DRAGONS') {
             $("#trending-image3").fadeOut(function () {
                 $(this).load(function () { $(this).fadeIn("slow"); });
                 $(this).attr("src", "./assets/ig.jpeg");
             });
         }
-        else if (trendArr2[3].name === 'ariana grande') {
+        else if (trendArr2[3].name === 'ARIANA GRANDE') {
             $("#trending-image3").fadeOut(function () {
                 $(this).load(function () { $(this).fadeIn("slow"); });
                 $(this).attr("src", "./assets/arianag.jpeg");
             });
         }
-        else if (trendArr2[3].name === '21 pilots') {
+        else if (trendArr2[3].name === '21 PILOTS') {
             $("#trending-image3").fadeOut(function () {
                 $(this).load(function () { $(this).fadeIn("slow"); });
                 $(this).attr("src", "./assets/21p.jpeg");
             });
         }
-        else if (trendArr2[3].name === 'u2') {
+        else if (trendArr2[3].name === 'U2') {
             $("#trending-image3").fadeOut(function () {
                 $(this).load(function () { $(this).fadeIn("slow"); });
                 $(this).attr("src", "./assets/u2.jpeg");
