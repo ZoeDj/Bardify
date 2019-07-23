@@ -1,48 +1,4 @@
 
-
-   /* Media Responsive Settings  */
-
-
-@media only screen and (max-width: 980px) {
-    .aboutme {
-        width: 800px;
-    }
-    .navheader {
-        width: 800px;
- }
-};
-
-@media only screen and (max-width: 768px) {
-    .aboutme {
-        width: 600px;
-    }
-    .navheader {
-        width: 600px;
- }
-    
-};
-
-@media only screen and (max-width: 640px) {
-    .aboutme {
-        width: 500px;
-    }
-    .navheader {
-        width: 500px;
- }
- .header {
-     position: static;
- }
-
-};
-
-.hero {
-   margin: 0 auto;
-}
-
-.input {
-    margin: 0 auto;
-}
-
 .input {
     width: 50%;
     margin-left: 25%;
@@ -55,31 +11,21 @@
 
 .hero {
     font-family: 'Cinzel Decorative' !important;
-    background: linear-gradient(to bottom,#800000, #ff9933 100%);
+    margin: 0 auto;
+    height: 100%;
     background: linear-gradient(to bottom,#800000, #ff9933 100%);
 }
 
-.submit {
+.submit, .random {
     width: 30%;
-    float: left;
-    margin-left: 60%; 
-    margin-top: 0%;
-    /* padding: 12px; */
-}
-
-.random {
-    width: 30%;
-    float: right;
-    margin-right: 60%; 
-    margin-top: 0%;
-    /* padding: 12px; */
-    font-family: 'Cinzel Decorative'; 
-}
+   }
 
 #pTrend {
-    color: maroon;
-    margin-top: 50px;
+    color: white;
+    margin-top: 25px;
     padding: 12px;
+    font-weight: 700;
+    font-family: 'Cinzel Decorative';
 }
 
 .hero-footer {
@@ -99,12 +45,18 @@
 
 /* dynamically formed page for displaying songs */
 .translated-text {
-    padding: 20px 25%;
-    color: white;
+    padding: 20px 20%;
+    color: maroon;
+    font-family: 'Raleway';
+}
+
+.footinfo {
+    font-family: 'Raleway';
+    font-size: 14px;
 }
 .display{
     display:block;
-    margin: 10px 0;
+    margin: 10px auto;
 }
 
 
@@ -116,6 +68,7 @@
     justify-content: space-around;
     align-items: center;
     flex-direction: column;
+    padding: 3%;
 }
 
 .delete {
@@ -123,3 +76,36 @@
     top: 10px;
     right: 10px;
 }
+.columns {
+    max-width: 100%;
+}
+
+h1 {
+    font-weight: bold;
+    font-size: 30px;
+    color: orange;
+}
+
+.lyric-div {
+    margin-bottom: 20px !important;
+    background: wheat;
+    opacity: 0.9;
+    margin: 20px 17%;
+    border-radius: 25px;
+}
+   /* Media Responsive Settings  */
+
+
+
+@media only screen and (max-width: 768px) {
+ .is-pulled-left, .is-pulled-right {
+     float: none !important;
+ }
+ .translated-text {
+    padding: 15px 10%;
+    color: maroon;
+ }
+ .lyric-div {
+     margin-bottom: 10px !important;
+ }
+};

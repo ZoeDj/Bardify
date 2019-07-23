@@ -1,6 +1,5 @@
 // JQuery: Document Ready //
 $(document).ready(function () {
-
     //Database Set Up - ICEBOX FEATURE  //  Storage of Artist and SongName to Firebase  //
     var firebaseConfig = {
         apiKey: "AIzaSyCsMczUUrLbOzNHExrxUMXaJARFdkLldSk",
@@ -12,7 +11,6 @@ $(document).ready(function () {
         appId: "1:793021669681:web:873f46e902cad6fc"
     };
     firebase.initializeApp(firebaseConfig);
-
     // Initial Values //
     var lyricOutput = "";
     var database = firebase.database();
@@ -21,7 +19,6 @@ $(document).ready(function () {
     var likeCount = 0;
     var resultSorting = {};
     var trendingArray = [];
-
     /// *** MAIN FUNCTION ***/// called by submit btn eventlistener, and contains a promise to address asyncronous return of API#1
     function lyricRequest(artist, song) {
         //  First API Call to retrieve music lyrics based artist and song parameters
@@ -31,6 +28,7 @@ $(document).ready(function () {
             + "&mus=" + song
             + "&apikey==8dc59cc7fdedc734247c325ec2ac4b7f",
             function (data) {
+                //  JSON object from API call#1
                 console.log(data, 'lyric object');  // logs API JSON object from API call#1
                 var test = data.mus[0].text;
                 var testTrim = test.trim();
@@ -57,14 +55,12 @@ $(document).ready(function () {
                 });
             });
     };
-
     //  User Interface -  event listeners,global execution callbacks
     $(".submit").on("click", function (event) {
         event.preventDefault();
         song = $("#songName").val().trim();
         artist = $("#artistName").val().trim();
         likeCount = 1;
-
         if( $(".input").val() == ""){
             $(".modal").addClass("is-active");
             $(".modal-content").append("<p>Please enter an Artist and Song</p>");
@@ -76,15 +72,10 @@ $(document).ready(function () {
         logDatabase()  // Interaction with Database
         // location.reload()
          }
-       
-
-
     });
-
     $(document).on("click", ".delete", function(){
         $(".modal").remove();
     })
-
     $(".random").on("click", function (event) {
         event.preventDefault();
         var randomArray = [
@@ -104,7 +95,6 @@ $(document).ready(function () {
         if ($(".clear")) { $(".clear").detach(); }
         if ($(".search")) { $(".search").detach(); }
     });
-
     //Audio playback buttons
     $(document).on("click", ".play", function () {
         responsiveVoice.speak($(".translated-text").text(), "US English Male");
@@ -137,7 +127,6 @@ $(document).ready(function () {
                 }, 0);
                 console.log(trendingArray[i].artist, ': ', numHits, ' hits');
                 resultSorting[trendingArray[i].artist] = numHits; //create new object keys  ===>  obj["key3"] = "value3";
-                // console.log(resultSorting, 'result Sorting Object***');
             }
             var results = [];
             for (var key in resultSorting) {
@@ -149,253 +138,222 @@ $(document).ready(function () {
                 return b.likes - a.likes;
             })
             console.log(results, "=== SORTED TREND ===");
-            /// Method1 for loop
-            var arr2 = [];
-            var string1 = "";
-            for (var property1 in results) {
-                string1 += results[property1];
-            }
-            var result2 = arr2.join(',');
-            console.log(result2);
-            console.log(arr2);
-            /// Method2  object.keys()
+            /// Top 5 trending artist's object.values()
             trendArr2 = Object.values(results);
             console.log(trendArr2[0].name, trendArr2[1].name, trendArr2[2].name, trendArr2[3].name, trendArr2[4].name, 'are the top 5 most clicked names')
             updateTrendPics();
         });
     };
-
     // Function to render screen 2
     function renderScreen2() {
         $("#one").hide();
-        $("#pTrend").before("<p class ='translated-text'>" + translated + "</p>");
+        $("#pTrend").before("<div class='lyric-div'><p class ='translated-text'>" + translated + "</p></div>");
         var newDiv  = $("<div class='translated-buttons'></div>")
         $("#pTrend").before(newDiv)
-        //Adding playback buttons
+        //Adding playback button
         $(newDiv).append("<button class='button is-rounded has-text-centered play' type='play'>Play</button>");
         $(newDiv).append("<button class='button is-rounded has-text-centered pause' type='pause'>Pause</button>");
         $(newDiv).append("<button class='button is-rounded has-text-centered resume' type='resume'>Resume</button>");
+        //
         $(newDiv).append("<button class='button is-rounded has-text-centered search display' type='submit'>Search</button>");
-        $(newDiv).append("<button class='button is-rounded has-text-centered clear display' type='clear'>Clear the Page</button>");
-
-        $(".clear").on("click", function (event) {
-            event.preventDefault();
-            $(".translated-text").hide();
-            $(".clear").detach();
-            $(".search").detach();
-            $("#one").show();
-        });
-
+        
         $(".search").on("click", function (event) {
             event.preventDefault();
+            $("#artistName").val("");
+            $("#songName").val("");
             $(".translated-text").hide();
-            $(".clear").detach();
+            $(".translated-text").remove();
             $(".search").detach();
+            $(".translated-buttons").hide()
             $("#one").show();
-            // $("#pTrend").append($("#input-form").show());
-            // $(".clear").detach();
-            // $(".search").detach();
         });
-
     }
-
     /// Function to update trending image based upon user clicks
     function updateTrendPics() {
+        console.log(trendArr2[0].name, 'should be beyonce')
         if (trendArr2[0].name === 'beyonce') {
             $("#trending-image0").fadeOut(function () {
                 $(this).load(function () { $(this).fadeIn("slow"); });
-                $(this).attr("src", "./assets/beyonce.jpeg");
+                $(this).attr("src", "./assets/images/beyonce.jpeg");
             });
         }
         else if (trendArr2[0].name === 'lady gaga') {
             $("#trending-image0").fadeOut(function () {
                 $(this).load(function () { $(this).fadeIn("slow"); });
-                $(this).attr("src", "./assets/ladygaga.jpeg");
+                $(this).attr("src", "./assets/images/ladygaga.jpeg");
             });
         }
         else if (trendArr2[0].name === 'imagine dragons') {
             $("#trending-image0").fadeOut(function () {
                 $(this).load(function () { $(this).fadeIn("slow"); });
-                $(this).attr("src", "./assets/id.jpeg");
+                $(this).attr("src", "./assets/images/id.jpeg");
             });
         }
         else if (trendArr2[0].name === 'ariana grande') {
             $("#trending-image0").fadeOut(function () {
                 $(this).load(function () { $(this).fadeIn("slow"); });
-                $(this).attr("src", "./assets/arianag.jpeg");
+                $(this).attr("src", "./assets/images/arianag.jpg");
             });
         }
         else if (trendArr2[0].name === '21 pilots') {
             $("#trending-image0").fadeOut(function () {
                 $(this).load(function () { $(this).fadeIn("slow"); });
-                $(this).attr("src", "./assets/21p.jpeg");
+                $(this).attr("src", "./assets/images/21p.jpeg");
             });
         }
-        else if (trendArr2[0].name === 'u2') {
+        else if (trendArr2[0].name === 'U2') {
             $("#trending-image0").fadeOut(function () {
                 $(this).load(function () { $(this).fadeIn("slow"); });
-                $(this).attr("src", "./assets/u2.jpeg");
+                $(this).attr("src", "./assets/images/u2.jpeg");
             });
         }
-
+        console.log(trendArr2[1].name, 'should be lady gaga')
         if (trendArr2[1].name === 'beyonce') {
             $("#trending-image1").fadeOut(function () {
                 $(this).load(function () { $(this).fadeIn("slow"); });
-                $(this).attr("src", "./assets/beyonce.jpeg");
+                $(this).attr("src", "./assets/images/beyonce.jpeg");
             });
         }
         else if (trendArr2[1].name === 'lady gaga') {
             $("#trending-image1").fadeOut(function () {
                 $(this).load(function () { $(this).fadeIn("slow"); });
-                $(this).attr("src", "./assets/ladygaga.jpeg");
+                $(this).attr("src", "./assets/images/ladygaga.jpg");
             });
         }
         else if (trendArr2[1].name === 'imagine dragons') {
             $("#trending-image1").fadeOut(function () {
                 $(this).load(function () { $(this).fadeIn("slow"); });
-                $(this).attr("src", "./assets/ig.jpeg");
+                $(this).attr("src", "./assets/images/id.jpeg");
             });
         }
         else if (trendArr2[1].name === 'ariana grande') {
             $("#trending-image1").fadeOut(function () {
                 $(this).load(function () { $(this).fadeIn("slow"); });
-                $(this).attr("src", "./assets/arrianag.jpeg");
+                $(this).attr("src", "./assets/images/arianag.jpg");
             });
         }
         else if (trendArr2[1].name === '21 pilots') {
             $("#trending-image1").fadeOut(function () {
                 $(this).load(function () { $(this).fadeIn("slow"); });
-                $(this).attr("src", "./assets/21p.jpeg");
+                $(this).attr("src", "./assets/images/21p.jpeg");
             });
         }
-        else if (trendArr2[1].name === 'u2') {
+        else if (trendArr2[1].name === 'U2') {
             $("#trending-image1").fadeOut(function () {
                 $(this).load(function () { $(this).fadeIn("slow"); });
-                $(this).attr("src", "./assets/u2.jpeg");
+                $(this).attr("src", "./assets/images/u2.jpeg");
             });
         }
-
+        console.log(trendArr2[2].name, 'should be 21 pilots')
         if (trendArr2[2].name === 'beyonce') {
             $("#trending-image2").fadeOut(function () {
                 $(this).load(function () { $(this).fadeIn("slow"); });
-                $(this).attr("src", "./assets/beyonce.jpeg");
+                $(this).attr("src", "./assets/images/beyonce.jpeg");
             });
         }
         else if (trendArr2[2].name === 'lady gaga') {
             $("#trending-image2").fadeOut(function () {
                 $(this).load(function () { $(this).fadeIn("slow"); });
-                $(this).attr("src", "./assets/ladygaga.jpeg");
+                $(this).attr("src", "./assets/images/ladygaga.jpg");
             });
         }
         else if (trendArr2[2].name === 'imagine dragons') {
             $("#trending-image2").fadeOut(function () {
                 $(this).load(function () { $(this).fadeIn("slow"); });
-                $(this).attr("src", "./assets/ig.jpeg");
+                $(this).attr("src", "./assets/images/id.jpeg");
             });
         }
         else if (trendArr2[2].name === 'ariana grande') {
             $("#trending-image2").fadeOut(function () {
                 $(this).load(function () { $(this).fadeIn("slow"); });
-                $(this).attr("src", "./assets/arianag.jpeg");
+                $(this).attr("src", "./assets/images/arianag.jpg");
             });
         }
         else if (trendArr2[2].name === '21 pilots') {
             $("#trending-image2").fadeOut(function () {
                 $(this).load(function () { $(this).fadeIn("slow"); });
-                $(this).attr("src", "./assets/21p.jpeg");
+                $(this).attr("src", "./assets/images/21p.jpeg");
             });
         }
-        else if (trendArr2[2].name === 'u2') {
+        else if (trendArr2[2].name === 'U2') {
             $("#trending-image2").fadeOut(function () {
                 $(this).load(function () { $(this).fadeIn("slow"); });
-                $(this).attr("src", "./assets/u2.jpeg");
+                $(this).attr("src", "./assets/images/u2.jpeg");
             });
         }
-
+        console.log(trendArr2[3].name, 'should be U2')
         if (trendArr2[3].name === 'beyonce') {
             $("#trending-image3").fadeOut(function () {
                 $(this).load(function () { $(this).fadeIn("slow"); });
-                $(this).attr("src", "./assets/beyonce.jpeg");
+                $(this).attr("src", "./assets/images/beyonce.jpeg");
             });
         }
         else if (trendArr2[3].name === 'lady gaga') {
             $("#trending-image3").fadeOut(function () {
                 $(this).load(function () { $(this).fadeIn("slow"); });
-                $(this).attr("src", "./assets/ladygaga.jpeg");
+                $(this).attr("src", "./assets/images/ladygaga.jpg");
             });
         }
         else if (trendArr2[3].name === 'imagine dragons') {
             $("#trending-image3").fadeOut(function () {
                 $(this).load(function () { $(this).fadeIn("slow"); });
-                $(this).attr("src", "./assets/ig.jpeg");
+                $(this).attr("src", "./assets/images/id.jpeg");
             });
         }
         else if (trendArr2[3].name === 'ariana grande') {
             $("#trending-image3").fadeOut(function () {
                 $(this).load(function () { $(this).fadeIn("slow"); });
-                $(this).attr("src", "./assets/arianag.jpeg");
+                $(this).attr("src", "./assets/images/arianag.jpg");
             });
         }
         else if (trendArr2[3].name === '21 pilots') {
             $("#trending-image3").fadeOut(function () {
                 $(this).load(function () { $(this).fadeIn("slow"); });
-                $(this).attr("src", "./assets/21p.jpeg");
+                $(this).attr("src", "./assets/images/21p.jpeg");
             });
         }
-        else if (trendArr2[3].name === 'u2') {
+        else if (trendArr2[3].name === 'U2') {
             $("#trending-image3").fadeOut(function () {
                 $(this).load(function () { $(this).fadeIn("slow"); });
-                $(this).attr("src", "./assets/u2.jpeg");
+                $(this).attr("src", "./assets/images/u2.jpeg");
             });
         }
-
-        if (trendArr2[4].name === 'BEYONCE') {
+        console.log(trendArr2[4].name, 'should be beyonce')
+        if (trendArr2[4].name === 'beyonce') {
             $("#trending-image4").fadeOut(function () {
                 $(this).load(function () { $(this).fadeIn("slow"); });
-                $(this).attr("src", "./assets/beyonce.jpeg");
+                $(this).attr("src", "./assets/images/beyonce.jpeg");
             });
         }
-        else if (trendArr2[4].name === 'LADY GAGA') {
+        else if (trendArr2[4].name === 'lady gaga') {
             $("#trending-image4").fadeOut(function () {
                 $(this).load(function () { $(this).fadeIn("slow"); });
-                $(this).attr("src", "./assets/ladygaga.jpeg");
+                $(this).attr("src", "./assets/images/ladygaga.jpeg");
             });
         }
-        else if (trendArr2[4].name === 'IMAGINE DRAGONS') {
+        else if (trendArr2[4].name === 'imagine dragons') {
             $("#trending-image4").fadeOut(function () {
                 $(this).load(function () { $(this).fadeIn("slow"); });
-                $(this).attr("src", "./assets/ig.jpeg");
+                $(this).attr("src", "./assets/images/id.jpeg");
             });
         }
-        else if (trendArr2[4].name === 'ARIANA GRANDE') {
+        else if (trendArr2[4].name === 'ariana grande') {
             $("#trending-image4").fadeOut(function () {
                 $(this).load(function () { $(this).fadeIn("slow"); });
-                $(this).attr("src", "./assets/arianag.jpeg");
+                $(this).attr("src", "./assets/images/arianag.jpg");
             });
         }
-        else if (trendArr2[4].name === '21 PILOTS') {
+        else if (trendArr2[4].name === '21 pilots') {
             $("#trending-image4").fadeOut(function () {
                 $(this).load(function () { $(this).fadeIn("slow"); });
-                $(this).attr("src", "./assets/21p.jpeg");
+                $(this).attr("src", "./assets/images/21p.jpeg");
             });
         }
         else if (trendArr2[4].name === 'U2') {
             $("#trending-image4").fadeOut(function () {
                 $(this).load(function () { $(this).fadeIn("slow"); });
-                $(this).attr("src", "./assets/u2.jpeg");
+                $(this).attr("src", "./assets/images/u2.jpeg");
             });
         }
-
     }
 });
-
-
-// Method 1
-// var obj = {value1: 'prop1', value2: 'prop2', value3: 'prop3'};
-// var arr = [];
-// for (var key in obj) {
-//     if (obj.hasOwnProperty(key)) {
-//         arr.push(key + '=' + obj[key]);
-//     }
-// // };
-// var result = arr.join(',');
