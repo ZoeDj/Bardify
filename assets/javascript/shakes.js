@@ -159,6 +159,8 @@ $(document).ready(function () {
             })
             console.log(results, "=== SORTED TREND ===");
             ///  Placeholder to replace html src attribute with top trending order
+
+            /// Method1 for loop
             var arr2 = [];
             var string1 = "";
             for (var property1 in results){
@@ -169,47 +171,52 @@ $(document).ready(function () {
             console.log(result2);
             console.log(arr2);
 
-            // updateTrendPics(results);
+
+            /// Method2  object.keys()
+            trendArr2 = Object.values(results);
+            console.log(trendArr2[0].name, trendArr2[1].name,trendArr2[2].name,trendArr2[3].name,trendArr2[4].name, 'are the top 5 most clicked names')
+         
+            updateTrendPics();
 
         });
     };
 
-    function updateTrendPics (results){
-             // ///  Placeholder to replace html src attribute with top trending order
-            // if(results[0]='beyonce'){$("#trending-image0").attr("src", "./assets/beyonce.jpeg");}
-            // else if(results[0]= 'lady gaga'){$("#trending-image0").attr("src", "./assets/ladygaga.jpeg");}
-            // else if(results[0]= 'imagine dragons'){$("#trending-image0").attr("src", "./assets/id.jpeg");}
-            // else if(results[0]= 'ariana grande'){ $("#trending-image0").attr("src", "./assets/arianag.jpeg");}
-            // else if(results[0]= 'lil nas'){$("#trending-image0").attr("src", "./assets/lilnnas.jpeg");}
+    function updateTrendPics (){
+             ///  Placeholder to replace html src attribute with top trending order
+            if(trendArr2[0].name==='beyonce'){$("#trending-image0").attr("src", "./assets/beyonce.jpeg");}
+            else if(trendArr2[0].name=== 'lady gaga'){$("#trending-image0").attr("src", "./assets/ladygaga.jpeg");}
+            else if(trendArr2[0].name=== 'imagine dragons'){$("#trending-image0").attr("src", "./assets/id.jpeg");}
+            else if(trendArr2[0].name=== 'ariana grande'){ $("#trending-image0").attr("src", "./assets/arianag.jpeg");}
+            else if(trendArr2[0].name=== 'lil nas'){$("#trending-image0").attr("src", "./assets/lilnnas.jpeg");}
 
-            // if(results[1]='beyonce'){$("#trending-image1").attr("src", "./assets/beyonce.jpeg");}
-            // else if(results[1]= 'lady gaga'){$("#trending-image1").attr("src", "./assets/ladygaga.jpeg");}
-            // else if(results[1]= 'imagine dragons'){$("#trending-image1").attr("src", "./assets/id.jpeg");}
-            // else if(results[1]= 'ariana grande'){ $("#trending-image1").attr("src", "./assets/arianag.jpeg");}
-            // else if(results[1]= 'lil nas'){ $("#trending-image1").attr("src", "./assets/lilnnas.jpeg");}
+            if(trendArr2[1].name==='beyonce'){$("#trending-image1").attr("src", "./assets/beyonce.jpeg");}
+            else if(trendArr2[1].name=== 'lady gaga'){$("#trending-image1").attr("src", "./assets/ladygaga.jpeg");}
+            else if(trendArr2[1].name=== 'imagine dragons'){$("#trending-image1").attr("src", "./assets/id.jpeg");}
+            else if(trendArr2[1].name=== 'ariana grande'){ $("#trending-image1").attr("src", "./assets/arianag.jpeg");}
+            else if(trendArr2[1].name=== 'lil nas'){ $("#trending-image1").attr("src", "./assets/lilnnas.jpeg");}
 
-            // if(results[2]='beyonce'){$("#trending-image2").attr("src", "./assets/beyonce.jpeg");}
-            // else if(results[2]= 'lady gaga'){$("#trending-image2").attr("src", "./assets/ladygaga.jpeg");}
-            // else if(results[2]= 'imagine dragons'){$("#trending-image2").attr("src", "./assets/id.jpeg");}
-            // else if(results[2]= 'ariana grande'){ $("#trending-image2").attr("src", "./assets/arianag.jpeg");}
-            // else if(results[2]= 'lil nas'){ $("#trending-image2").attr("src", "./assets/lilnnas.jpeg");}
+            if(trendArr2[2].name==='beyonce'){$("#trending-image2").attr("src", "./assets/beyonce.jpeg");}
+            else if(trendArr2[2].name=== 'lady gaga'){$("#trending-image2").attr("src", "./assets/ladygaga.jpeg");}
+            else if(trendArr2[2].name=== 'imagine dragons'){$("#trending-image2").attr("src", "./assets/id.jpeg");}
+            else if(trendArr2[2].name=== 'ariana grande'){ $("#trending-image2").attr("src", "./assets/arianag.jpeg");}
+            else if(trendArr2[2].name=== 'lil nas'){ $("#trending-image2").attr("src", "./assets/lilnnas.jpeg");}
 
-            // if(results[3]='beyonce'){$("#trending-image3").attr("src", "./assets/beyonce.jpeg");}
-            // else if(results[3]= 'lady gaga'){$("#trending-image3").attr("src", "./assets/ladygaga.jpeg");}
-            // else if(results[3]= 'imagine dragons'){$("#trending-image3").attr("src", "./assets/id.jpeg");}
-            // else if(results[3]= 'ariana grande'){ $("#trending-image3").attr("src", "./assets/arianag.jpeg");}
-            // else if(results[3]= 'lil nas'){ $("#trending-image3").attr("src", "./assets/lilnnas.jpeg");}
+            if(trendArr2[3].name==='beyonce'){$("#trending-image3").attr("src", "./assets/beyonce.jpeg");}
+            else if(trendArr2[3].name=== 'lady gaga'){$("#trending-image3").attr("src", "./assets/ladygaga.jpeg");}
+            else if(trendArr2[3].name=== 'imagine dragons'){$("#trending-image3").attr("src", "./assets/id.jpeg");}
+            else if(trendArr2[3].name=== 'ariana grande'){ $("#trending-image3").attr("src", "./assets/arianag.jpeg");}
+            else if(trendArr2[3].name=== 'lil nas'){ $("#trending-image3").attr("src", "./assets/lilnnas.jpeg");}
 
-            // if(results[4]='beyonce'){$("#trending-image4").attr("src", "./assets/beyonce.jpeg");}
-            // else if(results[4]= 'lady gaga'){$("#trending-image4").attr("src", "./assets/ladygaga.jpeg");}
-            // else if(results[4]= 'imagine dragons'){$("#trending-image4").attr("src", "./assets/id.jpeg");}
-            // else if(results[4]= 'ariana grande'){ $("#trending-image4").attr("src", "./assets/arianag.jpeg");}
-            // else if(results[4]= 'lil nas'){ $("#trending-image4").attr("src", "./assets/lilnnas.jpeg");}
+            if(trendArr2[4].name==='beyonce'){$("#trending-image4").attr("src", "./assets/beyonce.jpeg");}
+            else if(trendArr2[4].name=== 'lady gaga'){$("#trending-image4").attr("src", "./assets/ladygaga.jpeg");}
+            else if(trendArr2[4].name=== 'imagine dragons'){$("#trending-image4").attr("src", "./assets/id.jpeg");}
+            else if(trendArr2[4].name=== 'ariana grande'){ $("#trending-image4").attr("src", "./assets/arianag.jpeg");}
+            else if(trendArr2[4].name=== 'lil nas'){ $("#trending-image4").attr("src", "./assets/lilnnas.jpeg");}
     }
 });
 
 
-
+// Method 1
 // var obj = {value1: 'prop1', value2: 'prop2', value3: 'prop3'};
 // var arr = [];
 // for (var key in obj) {
