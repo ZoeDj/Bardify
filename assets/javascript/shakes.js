@@ -105,9 +105,15 @@ $(document).ready(function () {
         if ($(".search")) { $(".search").detach(); }
     });
 
-    //Plays audio of bardified lyric
+    //Audio playback buttons
     $(document).on("click", ".play", function () {
         responsiveVoice.speak($(".translated-text").text(), "US English Male");
+    });
+    $(document).on("click", ".pause", function () {
+        responsiveVoice.pause();
+    });
+    $(document).on("click", ".resume", function () {
+        responsiveVoice.resume();
     });
 
     // Database Function  to track trending artists 
@@ -165,9 +171,10 @@ $(document).ready(function () {
         $("#pTrend").before("<p class ='translated-text'>" + translated + "</p>");
         var newDiv  = $("<div class='translated-buttons'></div>")
         $("#pTrend").before(newDiv)
-        //Adding playback button
+        //Adding playback buttons
         $(newDiv).append("<button class='button is-rounded has-text-centered play' type='play'>Play</button>");
-        //
+        $(newDiv).append("<button class='button is-rounded has-text-centered pause' type='pause'>Pause</button>");
+        $(newDiv).append("<button class='button is-rounded has-text-centered resume' type='resume'>Resume</button>");
         $(newDiv).append("<button class='button is-rounded has-text-centered search display' type='submit'>Search</button>");
         $(newDiv).append("<button class='button is-rounded has-text-centered clear display' type='clear'>Clear the Page</button>");
 
