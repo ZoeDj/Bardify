@@ -107,5 +107,12 @@ h1 {
  }
  .lyric-div {
      margin-bottom: 10px !important;
+     margin: 10px 8%;
  }
+.modal-content{
+    width: 90%;
+}
+.link {
+    color: white;
+}
 };
