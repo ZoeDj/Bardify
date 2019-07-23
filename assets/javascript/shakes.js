@@ -162,12 +162,14 @@ $(document).ready(function () {
     // Function to render screen 2
     function renderScreen2() {
         $("#one").hide();
-        $("#pTrend").prepend("<p class ='translated-text'>" + translated + "</p>");
+        $("#pTrend").before("<p class ='translated-text'>" + translated + "</p>");
+        var newDiv  = $("<div class='translated-buttons'></div>")
+        $("#pTrend").before(newDiv)
         //Adding playback button
-        $(".translated-text").append("<button class='button is-rounded has-text-centered play' type='play'>Play</button>");
+        $(newDiv).append("<button class='button is-rounded has-text-centered play' type='play'>Play</button>");
         //
-        $(".translated-text").append("<button class='button is-rounded has-text-centered search display' type='submit'>Search</button>");
-        $(".translated-text").append("<button class='button is-rounded has-text-centered clear display' type='clear'>Clear the Page</button>");
+        $(newDiv).append("<button class='button is-rounded has-text-centered search display' type='submit'>Search</button>");
+        $(newDiv).append("<button class='button is-rounded has-text-centered clear display' type='clear'>Clear the Page</button>");
 
         $(".clear").on("click", function (event) {
             event.preventDefault();
