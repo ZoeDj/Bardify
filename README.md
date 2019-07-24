@@ -1,6 +1,8 @@
 This is a page that mixes modern lyricism with old.  We take input from the user in the form of an artist and song, and run it through an api that generates the lyrics the the given song. After, we run that return through another api that will translate the lyrics to Shakespearean English, and then display them to the user. For added entertainment, and a bit of a hook, we run the translated lyrics through another api that preforms text to speech-- in hopes to give you a funny sounding version of the song you chose. 
 
 Key Functionality
+
+
 ~  Lyric API interlinked with Shakespearan translator API brought to user via text to speech JQuery calls
 ~  Bulma front end generating sleek user interface
 ~  Compartmentalized code with specific function calls clearly defined by purpose.  
@@ -9,6 +11,8 @@ Key Functionality
 
 
 Back End Highlights
+
+
 ~  Main function ~ Returns string from API-1 which is passed as a query parameter into API-2.  This function acts as callback for user random and specific query inputs.
 
 ~  Event Handlers ~ Audio request event handler.  Search, random, play/pause button click handlers.  
@@ -21,6 +25,8 @@ Back End Highlights
 
 
 Front End Highlights
+
+
  ~  Stylish Landing Page ~ Allows the user to select their favorite artist and song.  BULMA BULMA BULMA!!!
 
  ~ Transition to Display Pages ~  Dynamically generated pages with smooth transitions to different sections of the website
